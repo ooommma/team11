@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+* {
+    font-family: 'PT Serif', serif;
+}
+
+body {
+    display: grid;
+    justify-items: center;
+    row-gap: 50px;
+}
+
+.webTitle {
+    height: 300px;
+    font-size: 300px;
+    font-weight: bold;
+}
+
+.searchBox {
+    margin-top: 20px;
+
+    >input {
+        width: 200px;
+        height: 40px;
+        text-align: center;
+    }
+}
+
+.cardBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    gap: 25px;
+    margin: 5px;
+}
+
+.movie-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    border: 1px solid black;
+    padding: 5px;
+
+    .poster {
+        width: 100%;
+        align-self: center;
+    }
+
+    .card-body {
+        position: relative;
+
+        .card-title {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 28px;
+            text-align: center;
+
+            >a {
+                text-decoration-line: none;
+                color: black;
+            }
+        }
+
+        .overview {
+            font-size: 13px;
+            padding: 5px;
+        }
+
+        .vote-average {
+            position: absolute;
+            text-align: end;
+            bottom: 0;
+            right: 0;
+
+            font-style: italic;
+        }
+    }
+}
+
+.moreBtn {
+    width: 50px;
+    height: 50px;
+    margin: auto 0px auto 0px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
