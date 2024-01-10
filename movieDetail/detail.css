@@ -1,0 +1,141 @@
+/* 링크 데코 없애기 */
+body,
+section {
+  width: auto;
+}
+
+li,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+/* 헤드라인 */
+.Header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: inline-block;
+  background-color: aqua;
+}
+
+.headerLeft {
+  display: inline-block;
+}
+
+.HeaderRight {
+  display: inline-block;
+  text-align: right;
+}
+
+.headerContainer {
+  display: inline-block;
+  padding: 3px 3px 0 3px;
+  margin: 3px 3px 0 3px;
+  background-color: rgb(98, 98, 231);
+}
+
+.headerItem {
+  display: inline-block;
+  padding: 2px;
+  margin: 0;
+  background-color: rgb(97, 97, 202);
+}
+
+.headerItemlist {
+  display: inline-block;
+  padding: 3px;
+  margin: 3px;
+  background-color: rgb(99, 99, 207);
+}
+
+/* 메인 파트 : 영화 내용 소개 및 예고편 */
+.mainCenter {
+  background-color: rgb(239, 239, 126);
+  background-image: none;
+}
+
+.Leftright {
+  display: inline-block;
+  width: auto;
+  padding: 25px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.leftPoster {
+  display: inline-block;
+  text-align: center;
+  padding: 5px 5px 0 5px;
+  margin: 0 30px 0 30px;
+  background-color: aquamarine;
+}
+
+.rightContent {
+  display: inline-block;
+  padding: 5px 5px 0 5px;
+  margin: 0 30px 0 30px;
+  background-color: darksalmon;
+}
+
+/* 메인 파트2 : 출연자 카드 */
+.Cast {
+  background-color: rgb(255, 196, 36);
+}
+
+.img-size {
+  justify-content: center;
+  width: 100px;
+  margin-bottom: 5px;
+}
+
+.cast-items {
+  display: inline-block;
+  background-color: rgb(43, 226, 52);
+  border-radius: 5px;
+  width: 20%;
+  padding: 10px 5px 5px 5px;
+  margin: 2.5px;
+}
+
+.cast-itemImg {
+  display: inline-block;
+}
+
+.cast-itemInfo {
+  display: inline-block;
+}
+
+/* 메인 파트2 : 코멘트 카드 */
+
+.comment-list {
+  background-color: rgb(188, 112, 213);
+}
+
+.comment-all {
+  display: inline-block;
+  background-color: rgb(157, 155, 155);
+  border-radius: 5px;
+  width: 20%;
+  padding: 10px 5px 5px 5px;
+  margin: 2.5px;
+}
+
+/* 맨 아래 */
+.foot {
+  background-color: cornflowerblue;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.footContainer {
+  display: flex;
+  padding: 1px;
+  margin-top: 7%;
+}
+
+.footItem {
+  display: inline-block;
+}
