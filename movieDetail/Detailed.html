@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="detail.css" />
   </head>
 
+
   <body>
     <header class="Header">
       <!-- 헤더 왼쪽 몰기-->
@@ -20,6 +21,8 @@
         </ul>
       </nav>
       </div>
+
+
      <!-- 헤더 오른쪽 몰기--> 
       <div class="HeaderRight">
         <nav class="headerContainer">
@@ -35,6 +38,7 @@
       </div>  
     </header>
 
+
     <section>
       <!-- 메인 중앙 영화 이미지 -->
       <article class="mainCenter">
@@ -44,6 +48,7 @@
           <p>상영 시간</p>
         </div>
       </article>
+
 
     <div class="Leftright">
       <!-- 왼쪽 영화 포스터 및 간단 설명 -->
@@ -82,10 +87,10 @@
           </div>
         </div>
      </article>
-    </div>  
-      
+    </div>    
     </section>
 
+    
     <!-- 출연/ 제작 카드 리스트 -->
     <section>
       <div>
@@ -116,6 +121,52 @@
             <h2>코멘트</h2> 
           </div>  
         </div>    
+
+
+        <!-- 아이디/비밀번호/리뷰 등록창-->
+        <form>
+          <fieldset class="Register">
+            <p>
+            <div class="Idpw">
+              <p>아이디 : <input type="text"></p>
+              <p>비밀번호 : <input type="password"></p>
+            </div>
+            </p>
+
+            <!-- 별점 -->
+            <span>
+              <p>
+              <div class="Ment">
+                <legend>당신의 별점은?</legend>
+              </div>
+              </p>
+            <!-- 별점 체크 -->
+              <p>
+                <div class="Star">
+                <input type="radio" name="reviewStar" value="5" id="rate1"><label
+                for="rate1">★</label>
+              <input type="radio" name="reviewStar" value="4" id="rate2"><label
+                for="rate2">★★</label>
+              <input type="radio" name="reviewStar" value="3" id="rate3"><label
+                for="rate3">★★★</label>
+              <input type="radio" name="reviewStar" value="2" id="rate4"><label
+                for="rate4">★★★</label>
+              <input type="radio" name="reviewStar" value="1" id="rate5"><label
+                for="rate5">★★★★</label>
+              </div>
+            </p>  
+            
+            <!-- 코멘트 입력 -->
+            <p>감상 : <input type="text" class="inputComment" placeholder="여러분의 감상을 남겨주세요 !"></p>
+            
+            <!-- 최종 등록 버튼 -->
+            <p><button>등록하기</button></p>
+          </span>
+          </fieldset>
+        </form>
+
+
+        <!-- 리뷰카드 리스트 -->
         <div class="comment-all" id="comment-all-container">
           <div class="comment-container">
                 <div class="comment-items" id="comment-all-info">
@@ -131,6 +182,8 @@
         </div>
     </section>
 
+
+    <!-- 바닥글 -->
     <footer class="foot">
         <nav class="footCcontainer">
             <li class="footItem"><a href="#">홈으로</a></li>
