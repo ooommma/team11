@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atcha</title>
+    <link rel="stylesheet" href="detail.css" />
+  </head>
+
+  <body>
+    <header class="Header">
+      <!-- 헤더 왼쪽 몰기-->
+      <div class="headerLeft">
+        <h1 class="headerContainer">Atcha Pedia</h1>
+      <nav class="headerContainer">
+        <ul class="headerItem">
+          <li class="headerItemlist"><a href="#">영화</a></li>
+          <li class="headerItemlist"><a href="#">시리즈</a></li>
+          <li class="headerItemlist"><a href="#">장르</a></li>
+        </ul>
+      </nav>
+      </div>
+     <!-- 헤더 오른쪽 몰기--> 
+      <div class="HeaderRight">
+        <nav class="headerContainer">
+          <ul class="headerItem">
+            <li class="headerItemlist">
+              <input type="text" placeholder="이 곳에 영화를 검색 해보세요 !" />
+            </li>
+            <li class="headerItemlist"><button>검색</button></li>
+            <li class="headerItemlist"><a href="#">로그인</a></li>
+            <li class="headerItemlist"><a href="#">회원 가입</a></li>
+          </ul>
+        </nav>
+      </div>  
+    </header>
+
+    <section>
+      <!-- 메인 중앙 영화 이미지 -->
+      <article class="mainCenter">
+        <div>
+          <p>영화이미지</p>
+          <p>연도/ 장르 설명</p>
+          <p>상영 시간</p>
+        </div>
+      </article>
+
+    <div class="Leftright">
+      <!-- 왼쪽 영화 포스터 및 간단 설명 -->
+      <aside class="leftPoster">
+        <div>
+          <h2>영화제목?</h2>
+          <div><img src="green.jpg" alt="" style="width: 300px" /></div>
+          <p>영화 평점</p>
+        </div>
+      </aside>
+
+      <!-- 오른쪽 영화 상세 내용 표시 -->
+      <article class="rightContent">
+        <div>
+          <div>
+            <p>영화 별점 주기</p>
+            <p>평균 별점</p>
+          </div>
+          <div>
+            <p>찜하기</p>
+            <p>코멘트</p>
+          </div>
+          <div>
+            <p>영화 내용----상세 설명</p>
+            <p>영화 예고편</p>
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/DKe0-yHepZo?si=znH2gwgiwrKzljB_"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+     </article>
+    </div>  
+      
+    </section>
+
+    <!-- 출연/ 제작 카드 리스트 -->
+    <section>
+      <div>
+        <div class="Cast">
+          <h2>제작/출연자</h2> 
+        </div>  
+      </div>    
+      <div class="cast-all" id="cast-all-container">
+        <div class="cast-container">
+              <div class="cast-items" id="cast-all-info">
+                <div class="cast-itemImg">
+                  <div class="cast-item"><img src="bogh.jpg" class="img-size"></div>
+                </div>
+                <div class="cast-itemInfo">
+                  <div class="cast-item">출연진</div>
+                  <div class="cast-item">역할</div>
+                </div>
+              </div>
+          </div>
+      </div>
+    </section>
+    
+
+    <!-- 코멘트 카드 리스트-->
+    <section>
+        <div>
+          <div class="comment-list">
+            <h2>코멘트</h2> 
+          </div>  
+        </div>    
+        <div class="comment-all" id="comment-all-container">
+          <div class="comment-container">
+                <div class="comment-items" id="comment-all-info">
+                  <div class="comment-ID">
+                    <div class="comment-item">ID</div>
+                  </div>
+                  <div class="comment-Info">
+                    <div class="comment-item">별점</div>
+                    <div class="comment-item">코멘트</div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="foot">
+        <nav class="footCcontainer">
+            <li class="footItem"><a href="#">홈으로</a></li>
+            <li class="footItem">고객 센터</li>
+            <li class="footItem">문의 하기</li>
+        </nav>
+        <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved..</p>
+        <p>
+        <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
+        </p>
+    </footer>
+  </body>
+</html>
