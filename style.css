@@ -90,53 +90,24 @@ body {
   bottom: 20px;
   right: 20px;
 }
-@media screen and (max-width: 1200px) {
-  /* 화면 너비 1200px 이하일 때 적용되는 스타일 */
-  .webTitle {
-    font-size: 200px;
-  }
 
-  .movie-card {
-    grid-template-columns: 1fr 1fr; /* 2열로 배치 */
-  }
-}
+@media screen and (max-width: 600px) {
+  /* 화면 너비가 600px 이하일 때의 스타일 */
 
-@media screen and (max-width: 992px) {
-  /* 화면 너비 992px 이하일 때 적용되는 스타일 */
   body {
-    grid-template-columns: 1fr; /* 한 열로 배치 */
+    font-size: 14px; /* 전체 텍스트 크기 축소 */
   }
 
-  .webTitle {
-    font-size: 150px;
+  .container {
+    max-width: 100%; /* 최대 너비 100%로 조정 */
   }
 
-  .searchBox > input {
-    width: 150px;
+  .content {
+    padding: 10px; /* 내용물 간격 축소 */
   }
 
-  .cardBox {
-    grid-template-columns: 1fr; /* 한 열로 배치 */
-  }
-
-  .moreBtn {
-    width: 40px;
-    height: 40px;
-    font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  /* 화면 너비 768px 이하일 때 적용되는 스타일 */
-  .webTitle {
-    font-size: 100px;
-  }
-
-  .searchBox > input {
-    width: 120px;
-  }
-
-  .movie-card {
-    grid-template-columns: 1fr; /* 1열로 배치 */
+  img {
+    max-width: 100%; /* 이미지 최대 너비 100%로 조정 */
+    height: auto; /* 가로 세로 비율 유지 */
   }
 }
