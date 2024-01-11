@@ -108,8 +108,18 @@ a {
   display: inline-block;
 }
 
-/* 메인 파트2 : 코멘트 카드 */
+/* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
+.Register {
+  width: 400px;
+  justify-content: center;
+}
 
+.inputComment {
+  width: 350px;
+  height: 120px;
+}
+
+/* 메인 파트2 : 코멘트 카드 */
 .comment-list {
   background-color: rgb(188, 112, 213);
 }
