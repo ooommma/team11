@@ -16,7 +16,7 @@ fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", opti
 
     movies.forEach((movie) => {
       makeMovieCard(movie);
-      addIdAlertEvent(movie);
+      //addIdAlertEvent(movie);
     });
 
     let moreBtn = `
@@ -56,6 +56,11 @@ function makeMovieCard(movie) {
 
   let element = document.getElementById("cardBox");
   element.insertAdjacentHTML("beforeend", card_html);
+
+  // 클릭 이벤트 핸들러를 등록하고 해당 영화의 ID를 전달
+  element.addEventListener('click', () => {
+      window.location.href = `movieDetail/view.html?id=${id}`;
+  });
 }
 
 // 카드 이미지 클릭 시 Alert
@@ -100,7 +105,7 @@ function moreFunc() {
 
       movies.forEach((movie) => {
         makeMovieCard(movie);
-        addIdAlertEvent(movie);
+        //addIdAlertEvent(movie);
       });
 
       let moreBtn = document.getElementById("moreBtn");
