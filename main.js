@@ -1,4 +1,4 @@
-const TMDB_API_KEY = "";
+const TMDB_API_KEY = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
 // TMDB top lated movie list API request code
 const options = {
   method: "GET",
@@ -31,6 +31,15 @@ fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", opti
     document.getElementById("moreBtn").addEventListener("click", () => {
       moreFunc();
     });
+
+    //ID값 전송
+    const movieList = document.querySelectorAll('.movie-card');
+    movieList.forEach(movie => {
+      movie.addEventListener('click', () => {
+        const movieId = movie.getAttribute('data-id');
+        window.location.href = `movieDetail/view.html?id=${movieId}`;
+      });
+    });
   })
   .catch((err) => console.error(err));
 
@@ -43,7 +52,7 @@ function makeMovieCard(movie) {
   let id = movie["id"];
 
   let card_html = `
-            <div class="movie-card" id="${id}">
+            <div class="movie-card" id="${id}" data-id="${id}">
                 <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="poster image">
                 <div class="card-body">
                     <div class="card-title"><a href="https://www.themoviedb.org/movie/${id}" target="blank">${title}</a></div>
@@ -56,10 +65,7 @@ function makeMovieCard(movie) {
   let element = document.getElementById("cardBox");
   element.insertAdjacentHTML("beforeend", card_html);
 
-  // 클릭 이벤트 핸들러를 등록하고 해당 영화의 ID를 전달
-  element.addEventListener('click', () => {
-      window.location.href = `movieDetail/view.html?id=${id}`;
-  });
+  
 }
 
 // 카드 이미지 클릭 시 Alert
