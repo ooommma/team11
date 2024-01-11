@@ -92,22 +92,20 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  /* 화면 너비가 600px 이하일 때의 스타일 */
-
   body {
-    font-size: 14px; /* 전체 텍스트 크기 축소 */
+    font-size: 14px;
   }
 
   .container {
-    max-width: 100%; /* 최대 너비 100%로 조정 */
+    max-width: 100%;
   }
 
   .content {
-    padding: 10px; /* 내용물 간격 축소 */
+    padding: 10px;
   }
 
   img {
-    max-width: 100%; /* 이미지 최대 너비 100%로 조정 */
-    height: auto; /* 가로 세로 비율 유지 */
+    max-width: 100%;
+    height: auto;
   }
 }
