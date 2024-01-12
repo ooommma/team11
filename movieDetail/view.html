@@ -182,10 +182,18 @@
         let stars = document.querySelector('input[name="reviewStar"]:checked').value;
         let review = document.getElementById("userRV").value;
 
-        validationCheckID(id);
-        validationCheckPW(password);
-        validationCheckRV(review);
-
+        
+        if(validationCheckID(id) === false) {
+          return;
+        } else {
+          if(validationCheckPW(password) === false) {
+            return;
+          } else{
+            if(validationCheckRV(review) === false) {
+              return;
+            };
+          };
+        };
 
         let userInfo = JSON.stringify({
           name: id,
