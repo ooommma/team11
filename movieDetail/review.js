@@ -7,21 +7,21 @@ export function gettingComment() {
 
     const gettingValue = JSON.parse(localStorage.getItem(localStorage.key(i)));
     const temp_html = `
-        <div class="comment-all" id="comment-all-container">
-            <div class="comment-container">
-                  <div class="comment-items" id="comment-all-info">
-                    <div class="comment-ID">
-                      <div class="comment-item">ID ${gettingValue.name}</div>
-                    </div>
-                    <div class="comment-Info">
-                      <div class="comment-item">별점</div>
-                      <div class="comment-item">코멘트 ${gettingValue.comment}</div>
-                    </div>
+            <div class="comment-all" id="comment-all-container">
+                <div class="comment-container">
+                      <div class="comment-items" id="comment-all-info">
+                        <div class="comment-ID">
+                          <div class="comment-item">ID ${gettingValue.name}</div>
+                        </div>
+                        <div class="comment-Info">
+                          <div class="comment-item">별점</div>
+                          <div class="comment-item">코멘트 ${gettingValue.comment}</div>
+                        </div>
+                      </div>
                   </div>
               </div>
-          </div>
-    </div>
-    `;
+        </div>
+        `;
 
     document.querySelector(".commentList").innerHTML += temp_html;
   }

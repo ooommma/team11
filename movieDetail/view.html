@@ -203,14 +203,9 @@
         <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
         </p>
     </footer>
+    <script src="view.js"></script>
     <script type="module">
-      import { gettingComment, ToWriteButton, ToDeleteButton } from "./view.js";
-
-      document.addEventListener("DOMContentLoaded", function () {
-        ToDeleteButton();
-        gettingComment();
-      });
-      ToWriteButton();
+      import { gettingComment, ToWriteButton, ToDeleteButton } from "./review.js";
 
       function creatingComment() {
         location.reload();
@@ -263,6 +258,13 @@
         document.getElementById("userPW").value = 0;
         document.getElementById("userCM").value = "";
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        ToDeleteButton();
+        gettingComment();
+      });
+      ToWriteButton();
+
     </script>
   </body>
 </html>
