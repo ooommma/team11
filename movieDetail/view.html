@@ -173,73 +173,23 @@
       <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
     </footer>
     
-    <script src="view.js"> </script>
-    <script>
+    <script src="view.js"></script>
+    <script type="module">
+      import {validationCheckID, validationCheckPW, validationCheckRV} from './validationCheck.js'
       function creatingReview() {
         let id = document.querySelector("#userID").value;
         let password = document.getElementById("userPW").value;
         let stars = document.querySelector('input[name="reviewStar"]:checked').value;
         let review = document.getElementById("userRV").value;
 
-        if (id === null || id === undefined || id === "") {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("ID: 아이디를 입력하세요.");
-          return;
-        } else if (typeof id !== "string") {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("ID: 잘못된 형식입니다.");
-          return;
-        } else if (id.length < 6 || id.length > 11) {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("ID: 아이디는 6~10자리로만 구성하실 수 있습니다.");
-          return;
-        }
+        validationCheckID(id);
+        validationCheckPW(password);
+        validationCheckRV(review);
 
-        if (password === null || password === undefined || password === 0) {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("PW: 비밀번호를 입력하세요.");
-          return;
-        } else if (!isNaN(password) && password.length === 4) {
-          password = Number(password);
-        } else if (!isNaN(password) && password.length !== 4) {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("PW: 비밀번호는 4자리 수로만 구성하실 수 있습니다.");
-          return;
-        } else if (typeof password !== "number") {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = "";
-        document.getElementById("userRV").value = "";
-          alert("PW: 잘못된 형식입니다.");
-          return;
-        }
-
-        if (review === null || review === undefined || review === "") {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value= "";
-        document.getElementById("userRV").value = "";
-          alert("RV: 리뷰를 작성하세요.");
-          return;
-        } else if (review.length < 50 || review.length > 1000) {
-          document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value= "";
-        document.getElementById("userRV").value = "";
-          alert("RV: 리뷰는 50자 이상 1,000자 이내로 작성하실 수 있습니다.");
-          return;
-        }
 
         let userInfo = JSON.stringify({
           name: id,
-          password: password,
+          password,
           stars,
           review
         });
@@ -254,8 +204,9 @@
       }
 
       function gettingReview() {
-        for (i = 0; i < localStorage.length; i++) {
-          let result = (localStorage.key(i) === null || localStorage.key(i) === undefined) ? localStorage.removeItem(localStorage.key(i)) : localStorage.getItem(localStorage.key(i));
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let result = (key === null || key === undefined) ? localStorage.removeItem(key) : localStorage.getItem(key);
           const gettingValue = JSON.parse(result);
           const temp_html = `
             <div class="comment-all" id="comment-all-container">
@@ -288,7 +239,7 @@
         ) {
           localStorage.removeItem(id);
         }
-        location.reload();
+        // location.reload();
       });
 
       gettingReview();
