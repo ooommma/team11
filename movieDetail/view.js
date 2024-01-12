@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   Promise.all([
     fetch(apiURL1, options),
-    fetch(apiURL2, options) // 두 번째 API 호출에 동일한 옵션을 사용하거나 필요에 따라 수정
+    fetch(apiURL2, options) 
   ])
     .then((responses) => {
       // 모든 응답을 JSON으로 변환
@@ -37,9 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((data) => {
       // data[0]는 첫 번째 API 응답, data[1]는 두 번째 API 응답
       console.log("첫 번째 API 응답:", data[0]);
-      const movieMain = document.getElementById("movieMain");
-      const movieLeft = document.getElementById("movieLeft");
-      const movieRight = document.getElementById("movieRight");
+      const movieWrapper = document.getElementById("movieWrapper");
 
       //장르 데이터 obj 쪼개서 넣기
       let movieGenres = [];
@@ -54,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         movieTrailerIdx !== -1
           ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${movieVideos[movieTrailerIdx].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
           : `<p class="no-trailer">트레일러가 없습니다.</p>`;
-      
 
-      let mainContents = `
+      let movieContents = `
+      <div id="movieMain" class="mainCenter">
         <div class='mainBox'>
             <div class='movieImg'>
                 <img src='https://image.tmdb.org/t/p/w500/${data[0].backdrop_path}'>
@@ -65,36 +63,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 ${movieGenres}
             </div>
             <p class='movieRT'>${data[0].runtime}분</p>
-        </div>`;
-      let leftContents = `
-        <div class='leftBox'>
-          <h2 class="movieTitle">${data[0].title}</h2>
-          <div class="movieImg">
-            <img src='https://image.tmdb.org/t/p/w500/${data[0].poster_path}' alt="" style="width: 300px" />
-          </div>
-          <p>영화 평점 : ${data[0].vote_average}</p>
         </div>
-      `;
-      let rightContents = `
-        <div>
-          <div>
-            <p>영화 별점 주기</p>
-            <p>평균 별점</p>
-          </div> 
-          <div>
-            <p>찜하기</p>
-            <p>코멘트</p>
-          </div>
-          <p>${data[0].overview}</p>
-          <div id="movieVideo">
-            <p>영화 예고편</p>
-            ${movieTrailer} 
-          </div>
-        </div>`;
+      </div>
 
-      movieMain.insertAdjacentHTML("beforeend", mainContents);
-      movieLeft.insertAdjacentHTML("beforeend", leftContents);
-      movieRight.insertAdjacentHTML("beforeend", rightContents);
+      <div class="Leftright">
+        <div id="movieLeft" class="leftPoster">
+          <div class='leftBox'>
+            <h2 class="movieTitle">${data[0].title}</h2>
+            <div class="movieImg">
+              <img src='https://image.tmdb.org/t/p/w500/${data[0].poster_path}' alt="" style="width: 300px" />
+            </div>
+            <p>영화 평점 : ${data[0].vote_average}</p>
+          </div>
+        </div>
+        <!--//movieLeft-->
+
+        <div id="movieRight" class="rightContent">  
+          <div class='rightBox'>
+            <div>
+              <p>영화 별점 주기</p>
+              <p>평균 별점</p>
+            </div> 
+            <div>
+              <p>찜하기</p>
+              <p>코멘트</p>
+            </div>
+            <p>${data[0].overview}</p>
+            <div id="movieVideo">
+              <p>영화 예고편</p>
+              ${movieTrailer} 
+            </div>
+          </div>
+        </div>
+        <!--//movieRight-->
+
+      </div>`;
+
+      movieWrapper.insertAdjacentHTML("beforeend", movieContents);
 
       console.log("두 번째 API 응답:", movieTrailer);
       //console.log("두 번째 API 응답:", data[1].results[0]);
