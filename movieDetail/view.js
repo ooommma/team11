@@ -3,7 +3,7 @@ function getQueryParam(param) {
   return searchParams.get(param);
 }
 const TMDB_API_KEY =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
+  "";
 
 document.addEventListener("DOMContentLoaded", function () {
   // URL에서 영화 ID 추출
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div>
             <p>영화 별점 주기</p>
             <p>평균 별점</p>
-          </div>
+          </div> 
           <div>
             <p>찜하기</p>
             <p>코멘트</p>
