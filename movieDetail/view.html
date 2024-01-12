@@ -255,7 +255,8 @@
 
       function gettingReview() {
         for (i = 0; i < localStorage.length; i++) {
-          const gettingValue = JSON.parse(localStorage.getItem(localStorage.key(i)));
+          let result = (localStorage.key(i) === null || localStorage.key(i) === undefined) ? localStorage.removeItem(localStorage.key(i)) : localStorage.getItem(localStorage.key(i));
+          const gettingValue = JSON.parse(result);
           const temp_html = `
             <div class="comment-all" id="comment-all-container">
                 <div class="comment-container">
@@ -278,7 +279,7 @@
 
       document.querySelector("#ToWriteButton").addEventListener("click", creatingReview);
 
-      document.querySelector("#ToDeleteButton").addEventListener("click", function () {
+      document.querySelector("#ToDeleteButton").addEventListener("click",  () => {
         const id = document.querySelector("#userID").value;
         const password = Number(document.getElementById("userPW").value);
         if (
