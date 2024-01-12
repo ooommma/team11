@@ -1,0 +1,15 @@
+// settings.json 에 아래 코드 삽입 시 html 파일에서도 프리티어 동작
+{ "editor.formatOnSave": true,
+"[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+"[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+"[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+"[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
