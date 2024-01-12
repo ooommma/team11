@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Atcha</title>
     <link rel="stylesheet" href="detail.css" />
-  </head>
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
 
   <body>
     <header class="Header">
       <!-- 헤더 왼쪽 몰기-->
       <div class="headerLeft">
         <h1 class="headerContainer">Atcha Pedia</h1>
-      <nav class="headerContainer">
-        <ul class="headerItem">
-          <li class="headerItemlist"><a href="#">영화</a></li>
-          <li class="headerItemlist"><a href="#">시리즈</a></li>
-          <li class="headerItemlist"><a href="#">장르</a></li>
-        </ul>
-      </nav>
+        <nav class="headerContainer">
+          <ul class="headerItem">
+            <li class="headerItemlist"><a href="#">영화</a></li>
+            <li class="headerItemlist"><a href="#">시리즈</a></li>
+            <li class="headerItemlist"><a href="#">장르</a></li>
+          </ul>
+        </nav>
       </div>
 
-
-     <!-- 헤더 오른쪽 몰기--> 
+      <!-- 헤더 오른쪽 몰기-->
       <div class="HeaderRight">
         <nav class="headerContainer">
           <ul class="headerItem">
@@ -35,20 +40,18 @@
             <li class="headerItemlist"><a href="#">회원 가입</a></li>
           </ul>
         </nav>
-      </div>  
+      </div>
     </header>
 
-
-    <section>
-      <!-- 메인 중앙 영화 이미지 -->
-      <article class="mainCenter">
-        <div>
-          <p>영화이미지</p>
-          <p>연도/ 장르 설명</p>
-          <p>상영 시간</p>
-        </div>
-      </article>
-
+    <!-- <section> -->
+    <!-- 메인 중앙 영화 이미지 -->
+    <article class="mainCenter">
+      <div>
+        <p>영화이미지</p>
+        <p>연도/ 장르 설명</p>
+        <p>상영 시간</p>
+      </div>
+    </article>
 
     <div class="Leftright">
       <!-- 왼쪽 영화 포스터 및 간단 설명 -->
@@ -86,169 +89,159 @@
             </iframe>
           </div>
         </div>
-     </article>
-    </div>    
-    </section>
+      </article>
+    </div>
+    <!-- </section> -->
 
-    
     <!-- 출연/ 제작 카드 리스트 -->
     <section>
       <div>
         <div class="Cast">
-          <h2>제작/출연자</h2> 
-        </div>  
-      </div>    
+          <h2>제작/출연자</h2>
+        </div>
+      </div>
       <div class="cast-all" id="cast-all-container">
         <div class="cast-container">
-              <div class="cast-items" id="cast-all-info">
-                <div class="cast-itemImg">
-                  <div class="cast-item"><img src="bogh.jpg" class="img-size"></div>
-                </div>
-                <div class="cast-itemInfo">
-                  <div class="cast-item">출연진</div>
-                  <div class="cast-item">역할</div>
-                </div>
-              </div>
+          <div class="cast-items" id="cast-all-info">
+            <div class="cast-itemImg">
+              <div class="cast-item"><img src="bogh.jpg" class="img-size" /></div>
+            </div>
+            <div class="cast-itemInfo">
+              <div class="cast-item">출연진</div>
+              <div class="cast-item">역할</div>
+            </div>
           </div>
+        </div>
       </div>
     </section>
-    
 
     <!-- 코멘트 카드 리스트-->
-    <section>
-        <div>
-          <div class="comment-list">
-            <h2>코멘트</h2> 
-          </div>  
-        </div>    
+    <div>
+      <div class="comment-list">
+        <h2>코멘트</h2>
+      </div>
+    </div>
 
+    <!-- 아이디/비밀번호/리뷰 등록창-->
+    <div>
+      <div class="Idpw">
+        <p>아이디 : <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." /></p>
+        <p>비밀번호 : <input type="text" id="userPW" placeholder="4자리 숫자로 입력해 주세요." /></p>
+      </div>
 
-        <!-- 아이디/비밀번호/리뷰 등록창-->
-        <form>
-          <fieldset class="Register">
-            <p>
-              <div>
-                <div class="Idpw">
-                  <p>아이디 : <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." /></p>
-                  <p>비밀번호 : <input type="text" id="userPW" placeholder="4자리 숫자로 입력해 주세요." /></p>
-                </div>
-            </p>
+      <!-- 별점 -->
+      <!-- <span> -->
+      <div class="Ment">
+        <legend>당신의 별점은?</legend>
+      </div>
+      <!-- 별점 체크 -->
+      <div class="Star">
+        <input type="radio" name="reviewStar" value="★" id="rate1" /><label for="rate1">★</label>
+        <input type="radio" name="reviewStar" value="★★" id="rate2" /><label for="rate2">★★</label>
+        <input type="radio" name="reviewStar" value="★★★" id="rate3" /><label for="rate3">★★★</label>
+        <input type="radio" name="reviewStar" value="★★★★" id="rate4" /><label for="rate4">★★★★</label>
+        <input type="radio" name="reviewStar" value="★★★★★" id="rate5" /><label for="rate5">★★★★★</label>
+      </div>
 
-            <!-- 별점 -->
-            <span>
-              <p>
-              <div class="Ment">
-                <legend>당신의 별점은?</legend>
-              </div>
-              </p>
-            <!-- 별점 체크 -->
-              <p>
-                <div class="Star">
-                <input type="radio" name="reviewStar" value="5" id="rate1"><label
-                for="rate1">★</label>
-              <input type="radio" name="reviewStar" value="4" id="rate2"><label
-                for="rate2">★★</label>
-              <input type="radio" name="reviewStar" value="3" id="rate3"><label
-                for="rate3">★★★</label>
-              <input type="radio" name="reviewStar" value="2" id="rate4"><label
-                for="rate4">★★★</label>
-              <input type="radio" name="reviewStar" value="1" id="rate5"><label
-                for="rate5">★★★★</label>
-              </div>
-            </p>  
-            
-            <!-- 코멘트 입력 -->
-            <p>            감상 :
-              <input
-                type="text"
-                class="inputComment"
-                id="userCM"
-                placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)"
-              /></p>
-            
-            <!-- 최종 -->
-            <p><button id="ToWriteButton">등록하기/수정하기</button></p>
-            <p><button id="ToDeleteButton">삭제하기</button></p>
-          </span>
-          </fieldset>
-        </form>
+      <!-- 코멘트 입력 -->
+      <p>
+        감상 :
+        <input
+          type="text"
+          class="inputComment"
+          id="userRV"
+          placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)"
+        />
+      </p>
 
+      <!-- 최종 -->
+      <p><button id="ToWriteButton">등록하기/수정하기</button></p>
+      <p><button id="ToDeleteButton">삭제하기</button></p>
+      <!-- </span> -->
 
-        <!-- 리뷰카드 리스트 -->
-        <div class="comment-all" id="comment-all-container">
-          <div class="comment-container">
-                <div class="comment-items" id="comment-all-info">
-                  <div class="comment-ID">
-                    <div class="comment-item">ID</div>
-                  </div>
-                  <div class="comment-Info">
-                    <div class="comment-item">별점</div>
-                    <div class="comment-item">코멘트</div>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+      <!-- 리뷰카드 리스트 -->
+      <div class="commentList"></div>
 
     <!-- 바닥글 -->
     <footer class="foot">
-        <nav class="footCcontainer">
-            <li class="footItem"><a href="#">홈으로</a></li>
-            <li class="footItem">고객 센터</li>
-            <li class="footItem">문의 하기</li>
-        </nav>
-        <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved.</p>
-        <p>
-        <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
-        </p>
+      <nav class="footCcontainer">
+        <li class="footItem"><a href="#">홈으로</a></li>
+        <li class="footItem">고객 센터</li>
+        <li class="footItem">문의 하기</li>
+      </nav>
+      <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved.</p>
+      <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
     </footer>
-    <script src="view.js"></script>
-    <script type="module">
-      import { gettingComment, ToWriteButton, ToDeleteButton } from "./review.js";
-
-      function creatingComment() {
-        location.reload();
+    
+    <script src="view.js"> </script>
+    <script>
+      function creatingReview() {
         let id = document.querySelector("#userID").value;
         let password = document.getElementById("userPW").value;
-        let comment = document.getElementById("userCM").value;
+        let stars = document.querySelector('input[name="reviewStar"]:checked').value;
+        let review = document.getElementById("userRV").value;
 
         if (id === null || id === undefined || id === "") {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("ID: 아이디를 입력하세요.");
           return;
         } else if (typeof id !== "string") {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("ID: 잘못된 형식입니다.");
           return;
-        } else if (id.length < 6 || id.length > 10) {
+        } else if (id.length < 6 || id.length > 11) {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("ID: 아이디는 6~10자리로만 구성하실 수 있습니다.");
           return;
         }
 
         if (password === null || password === undefined || password === 0) {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("PW: 비밀번호를 입력하세요.");
           return;
         } else if (!isNaN(password) && password.length === 4) {
           password = Number(password);
         } else if (!isNaN(password) && password.length !== 4) {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("PW: 비밀번호는 4자리 수로만 구성하실 수 있습니다.");
           return;
         } else if (typeof password !== "number") {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = "";
+        document.getElementById("userRV").value = "";
           alert("PW: 잘못된 형식입니다.");
           return;
         }
 
-        if (comment === null || comment === undefined || comment === "") {
-          alert("CM: 코멘트를 작성하세요.");
+        if (review === null || review === undefined || review === "") {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value= "";
+        document.getElementById("userRV").value = "";
+          alert("RV: 리뷰를 작성하세요.");
           return;
-        } else if (comment.length < 50 || comment.length > 1000) {
-          alert("CM: 코멘트는 50자 이상 1,000자 이내로 작성하실 수 있습니다.");
+        } else if (review.length < 50 || review.length > 1000) {
+          document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value= "";
+        document.getElementById("userRV").value = "";
+          alert("RV: 리뷰는 50자 이상 1,000자 이내로 작성하실 수 있습니다.");
           return;
         }
 
         let userInfo = JSON.stringify({
           name: id,
           password: password,
-          comment
+          stars,
+          review
         });
 
         localStorage.setItem(id, userInfo);
@@ -256,15 +249,48 @@
 
         document.querySelector("#userID").value = "";
         document.getElementById("userPW").value = 0;
-        document.getElementById("userCM").value = "";
+        document.getElementById("userRV").value = "";
+        location.reload();
       }
 
-      document.addEventListener("DOMContentLoaded", function () {
-        ToDeleteButton();
-        gettingComment();
-      });
-      ToWriteButton();
+      function gettingReview() {
+        for (i = 0; i < localStorage.length; i++) {
+          const gettingValue = JSON.parse(localStorage.getItem(localStorage.key(i)));
+          const temp_html = `
+            <div class="comment-all" id="comment-all-container">
+                <div class="comment-container">
+                      <div class="comment-items" id="comment-all-info">
+                        <div class="comment-ID">
+                          <div class="comment-item">ID ${gettingValue.name}</div>
+                        <div class="comment-Info">
+                          <div class="comment-item">별점 ${gettingValue.stars}</div>
+                          <div class="comment-item">코멘트 ${gettingValue.review}</div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+        `;
 
+          document.querySelector(".commentList").innerHTML += temp_html;
+        }
+      }
+
+      document.querySelector("#ToWriteButton").addEventListener("click", creatingReview);
+
+      document.querySelector("#ToDeleteButton").addEventListener("click", function () {
+        const id = document.querySelector("#userID").value;
+        const password = Number(document.getElementById("userPW").value);
+        if (
+          JSON.parse(localStorage.getItem(id)).name === id &&
+          JSON.parse(localStorage.getItem(id)).password === password
+        ) {
+          localStorage.removeItem(id);
+        }
+        location.reload();
+      });
+
+      gettingReview();
     </script>
   </body>
 </html>
