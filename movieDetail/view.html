@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atcha</title>
-  <link rel="stylesheet" href="detail.css" />
-</head>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atcha</title>
+    <link rel="stylesheet" href="detail.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
 
 <body>
   <header class="Header">
@@ -87,48 +91,42 @@
       </div>
     </div>
 
-
     <!-- 아이디/비밀번호/리뷰 등록창-->
-    <form>
-      <fieldset class="Register">
-        <p>
-        <div>
-          <div class="Idpw">
-            <p>아이디 : <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." /></p>
-            <p>비밀번호 : <input type="text" id="userPW" placeholder="4자리 숫자로 입력해 주세요." /></p>
-          </div>
-          </p>
+    <div>
+      <div class="Idpw">
+        <p>아이디 : <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." /></p>
+        <p>비밀번호 : <input type="text" id="userPW" placeholder="4자리 숫자로 입력해 주세요." /></p>
+      </div>
 
-          <!-- 별점 -->
-          <span>
-            <p>
-            <div class="Ment">
-              <legend>당신의 별점은?</legend>
-            </div>
-            </p>
-            <!-- 별점 체크 -->
-            <p>
-            <div class="Star">
-              <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
-              <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★★</label>
-              <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★★★</label>
-              <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★★★</label>
-              <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★★★★</label>
-            </div>
-            </p>
+      <!-- 별점 -->
+      <!-- <span> -->
+      <div class="Ment">
+        <legend>당신의 별점은?</legend>
+      </div>
+      <!-- 별점 체크 -->
+      <div class="Star">
+        <input type="radio" name="reviewStar" value="★" id="rate1" /><label for="rate1">★</label>
+        <input type="radio" name="reviewStar" value="★★" id="rate2" /><label for="rate2">★★</label>
+        <input type="radio" name="reviewStar" value="★★★" id="rate3" /><label for="rate3">★★★</label>
+        <input type="radio" name="reviewStar" value="★★★★" id="rate4" /><label for="rate4">★★★★</label>
+        <input type="radio" name="reviewStar" value="★★★★★" id="rate5" /><label for="rate5">★★★★★</label>
+      </div>
 
-            <!-- 코멘트 입력 -->
-            <p> 감상 :
-              <input type="text" class="inputComment" id="userCM" placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)" />
-            </p>
+      <!-- 코멘트 입력 -->
+      <p>
+        감상 :
+        <input
+          type="text"
+          class="inputComment"
+          id="userRV"
+          placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)"
+        />
+      </p>
 
-            <!-- 최종 -->
-            <p><button id="ToWriteButton">등록하기/수정하기</button></p>
-            <p><button id="ToDeleteButton">삭제하기</button></p>
-          </span>
-      </fieldset>
-    </form>
-
+      <!-- 최종 -->
+      <p><button id="ToWriteButton">등록하기/수정하기</button></p>
+      <p><button id="ToDeleteButton">삭제하기</button></p>
+      <!-- </span> -->
 
     <!-- 리뷰카드 리스트 -->
     <div class="comment-all" id="comment-all-container">
@@ -136,7 +134,7 @@
         <div class="comment-items" id="comment-all-info">
           <div class="comment-ID">
             <div class="comment-item">ID</div>
-          </div> 
+          </div>
           <div class="comment-Info">
             <div class="comment-item">별점</div>
             <div class="comment-item">코멘트</div>
@@ -147,81 +145,95 @@
   </section>
 
 
-  <!-- 바닥글 -->
-  <footer class="foot">
-    <nav class="footCcontainer">
-      <li class="footItem"><a href="#">홈으로</a></li>
-      <li class="footItem">고객 센터</li>
-      <li class="footItem">문의 하기</li>
-    </nav>
-    <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved.</p>
-    <p>
-    <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
-    </p>
-  </footer>
-  <script src="view.js"></script>
-  <script type="module">
-    import { gettingComment, ToWriteButton, ToDeleteButton } from "./review.js";
+    <!-- 바닥글 -->
+    <footer class="foot">
+      <nav class="footCcontainer">
+        <li class="footItem"><a href="#">홈으로</a></li>
+        <li class="footItem">고객 센터</li>
+        <li class="footItem">문의 하기</li>
+      </nav>
+      <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved.</p>
+      <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
+    </footer>
+    
+    <script src="view.js"></script>
+    <script type="module">
+      import {validationCheckID, validationCheckPW, validationCheckRV} from './validationCheck.js'
+      function creatingReview() {
+        let id = document.querySelector("#userID").value;
+        let password = document.getElementById("userPW").value;
+        let stars = document.querySelector('input[name="reviewStar"]:checked').value;
+        let review = document.getElementById("userRV").value;
 
-    function creatingComment() {
-      location.reload();
-      let id = document.querySelector("#userID").value;
-      let password = document.getElementById("userPW").value;
-      let comment = document.getElementById("userCM").value;
+        
+        if(validationCheckID(id) === false) {
+          return;
+        } else {
+          if(validationCheckPW(password) === false) {
+            return;
+          } else{
+            if(validationCheckRV(review) === false) {
+              return;
+            };
+          };
+        };
 
-      if (id === null || id === undefined || id === "") {
-        alert("ID: 아이디를 입력하세요.");
-        return;
-      } else if (typeof id !== "string") {
-        alert("ID: 잘못된 형식입니다.");
-        return;
-      } else if (id.length < 6 || id.length > 10) {
-        alert("ID: 아이디는 6~10자리로만 구성하실 수 있습니다.");
-        return;
+        let userInfo = JSON.stringify({
+          name: id,
+          password,
+          stars,
+          review
+        });
+
+        localStorage.setItem(id, userInfo);
+        console.log(`계정이 생성되었습니다. ${userInfo}`);
+
+        document.querySelector("#userID").value = "";
+        document.getElementById("userPW").value = 0;
+        document.getElementById("userRV").value = "";
+        location.reload();
       }
 
-      if (password === null || password === undefined || password === 0) {
-        alert("PW: 비밀번호를 입력하세요.");
-        return;
-      } else if (!isNaN(password) && password.length === 4) {
-        password = Number(password);
-      } else if (!isNaN(password) && password.length !== 4) {
-        alert("PW: 비밀번호는 4자리 수로만 구성하실 수 있습니다.");
-        return;
-      } else if (typeof password !== "number") {
-        alert("PW: 잘못된 형식입니다.");
-        return;
+      function gettingReview() {
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let result = (key === null || key === undefined) ? localStorage.removeItem(key) : localStorage.getItem(key);
+          const gettingValue = JSON.parse(result);
+          const temp_html = `
+            <div class="comment-all" id="comment-all-container">
+                <div class="comment-container">
+                      <div class="comment-items" id="comment-all-info">
+                        <div class="comment-ID">
+                          <div class="comment-item">ID ${gettingValue.name}</div>
+                        <div class="comment-Info">
+                          <div class="comment-item">별점 ${gettingValue.stars}</div>
+                          <div class="comment-item">코멘트 ${gettingValue.review}</div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+        `;
+
+          document.querySelector(".commentList").innerHTML += temp_html;
+        }
       }
 
-      if (comment === null || comment === undefined || comment === "") {
-        alert("CM: 코멘트를 작성하세요.");
-        return;
-      } else if (comment.length < 50 || comment.length > 1000) {
-        alert("CM: 코멘트는 50자 이상 1,000자 이내로 작성하실 수 있습니다.");
-        return;
-      }
+      document.querySelector("#ToWriteButton").addEventListener("click", creatingReview);
 
-      let userInfo = JSON.stringify({
-        name: id,
-        password: password,
-        comment
+      document.querySelector("#ToDeleteButton").addEventListener("click",  () => {
+        const id = document.querySelector("#userID").value;
+        const password = Number(document.getElementById("userPW").value);
+        if (
+          JSON.parse(localStorage.getItem(id)).name === id &&
+          JSON.parse(localStorage.getItem(id)).password === password
+        ) {
+          localStorage.removeItem(id);
+        }
+        // location.reload();
       });
 
-      localStorage.setItem(id, userInfo);
-      console.log(`계정이 생성되었습니다. ${userInfo}`);
-
-      document.querySelector("#userID").value = "";
-      document.getElementById("userPW").value = 0;
-      document.getElementById("userCM").value = "";
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      ToDeleteButton();
-      gettingComment();
-    });
-    ToWriteButton();
-
-  </script>
-</body>
-
+      gettingReview();
+    </script>
+  </body>
 </html>
