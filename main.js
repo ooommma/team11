@@ -1,5 +1,22 @@
-const TMDB_API_KEY = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
-// TMDB top lated movie list API request code
+let movies = [];
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const sort = new URLSearchParams(window.location.search).get("sort");
+  const page = new URLSearchParams(window.location.search).get("page");
+  await getMovieData(sort, page);
+  makeMovieCard();
+  sendIDToDetailPage();
+  makePageBtns();
+
+  document.getElementById("searchMovie").addEventListener("keyup", () => {
+    searchMovie();
+  });
+});
+
+// TMDB API Fetch Code
+const TMDB_API_KEY =
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
+
 const options = {
   method: "GET",
   headers: {
@@ -8,50 +25,34 @@ const options = {
   }
 };
 
-fetch("https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1", options)
-  .then((response) => response.json())
-  .then((response) => {
-    let movies = response["results"];
+// 영화 데이터 생성 함수
+async function getMovieData(sort, page) {
+  if (!sort) sort = "top_rated";
+  if (!page) page = 1;
 
-    movies.forEach((movie) => {
-      makeMovieCard(movie);
-      //addIdAlertEvent(movie);
+  let url = `https://api.themoviedb.org/3/movie/${sort}?language=ko-KR&page=${page}`;
+
+  await fetch(url, options)
+    .then((response) => response.json())
+    .then((data) => {
+      movies = data["results"];
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("잘못된 API 접근입니다.");
     });
-
-    let moreBtn = `
-        <button class="moreBtn" id="moreBtn">more</button>
-        `;
-    let element = document.getElementById("cardBox");
-    element.insertAdjacentHTML("beforeend", moreBtn);
-
-    document.getElementById("searchMovie").addEventListener("keyup", () => {
-      searchMovie(movies);
-    });
-
-    document.getElementById("moreBtn").addEventListener("click", () => {
-      moreFunc();
-    });
-
-    //ID값 전송
-    const movieList = document.querySelectorAll('.movie-card');
-    movieList.forEach(movie => {
-      movie.addEventListener('click', () => {
-        const movieId = movie.getAttribute('data-id');
-        window.location.href = `movieDetail/view.html?id=${movieId}`;
-      });
-    });
-  })
-  .catch((err) => console.error(err));
+}
 
 // 카드 생성 함수
-function makeMovieCard(movie) {
-  let title = movie["title"];
-  let overview = movie["overview"];
-  let poster_path = movie["poster_path"];
-  let vote_average = movie["vote_average"];
-  let id = movie["id"];
+function makeMovieCard() {
+  movies.forEach((movie) => {
+    let title = movie["title"];
+    let overview = movie["overview"];
+    let poster_path = movie["poster_path"];
+    let vote_average = movie["vote_average"];
+    let id = movie["id"];
 
-  let card_html = `
+    let card_html = `
             <div class="movie-card" id="${id}" data-id="${id}">
                 <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="poster image">
                 <div class="card-body">
@@ -62,22 +63,13 @@ function makeMovieCard(movie) {
             </div>
             `;
 
-  let element = document.getElementById("cardBox");
-  element.insertAdjacentHTML("beforeend", card_html);
-
-  
-}
-
-// 카드 이미지 클릭 시 Alert
-function addIdAlertEvent(movie) {
-  let imgElement = document.getElementById(`${movie["id"]}-img`);
-  imgElement.addEventListener("click", () => {
-    window.alert("영화 id: " + movie["id"]);
+    let element = document.getElementById("cardBox");
+    element.insertAdjacentHTML("beforeend", card_html);
   });
 }
 
 // title로 검색 (대소문자, 공백 구분 X)
-function searchMovie(movies) {
+function searchMovie() {
   let searchStr = document.getElementById("searchMovie").value.toUpperCase().replace(" ", "");
 
   movies.forEach((movie) => {
@@ -90,38 +82,37 @@ function searchMovie(movies) {
       element.style.display = "none";
     }
   });
-
-  //moreBtn display
-  if (searchStr !== "") {
-    document.getElementById("moreBtn").style.display = "none";
-  } else {
-    document.getElementById("moreBtn").style.display = "block";
-  }
 }
 
-let page = 2;
+// 상세 페이지로 ID값 전송 함수
+function sendIDToDetailPage() {
+  const movieList = document.querySelectorAll(".movie-card");
+  movieList.forEach((movie) => {
+    movie.addEventListener("click", () => {
+      const movieId = movie.getAttribute("data-id");
+      window.location.href = `movieDetail/view.html?id=${movieId}`;
+    });
+  });
+}
 
-function moreFunc() {
-  let url = "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=" + page;
-  fetch(url, options)
-    .then((response) => response.json())
-    .then((response) => {
-      let movies = response["results"];
+// 페이징 함수
+function makePageBtns() {
+  let pageBox = document.getElementById("pageBox");
+  let pageHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    pageID = `page=${i}`;
+    pageHTML += `
+    <span class="pages" id="${pageID}">${i}</span>`;
+  }
+  pageHTML += `
+  <span id="nextBtn">다음</span>`;
 
-      movies.forEach((movie) => {
-        makeMovieCard(movie);
-        //addIdAlertEvent(movie);
-      });
+  pageBox.innerHTML = pageHTML;
 
-      let moreBtn = document.getElementById("moreBtn");
-      let element = document.getElementById("cardBox");
-      element.appendChild(moreBtn);
-
-      document.getElementById("searchMovie").addEventListener("keyup", () => {
-        searchMovie(movies);
-      });
-    })
-    .catch((err) => console.error(err));
-
-  page++;
+  [...document.querySelectorAll(".pages")].map((element) => {
+    let pageID = element.getAttribute("id");
+    element.addEventListener("click", () => {
+      window.location.href = `index.html?${pageID}`;
+    });
+  });
 }
