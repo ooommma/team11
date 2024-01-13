@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Authorization: `${TMDB_API_KEY}`
     }
   };
-
+ 
   const apiURL1 = "https://api.themoviedb.org/3/movie/" + movieId + "?language=ko-KO";
   const apiURL2 = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=ko-KO"; // 두 번째 API 주소
 
