@@ -141,7 +141,7 @@
     <!-- <script src="view.js"></script> -->
     <script type="module">
       //유효성 검사 함수 import
-      import {validationCheckID, validationCheckPW, validationCheckRV} from './validationCheck.js'
+      import {validationCheckID, validationCheckPW, validationCheckStars, validationCheckRV} from './validationCheck.js'
 
       let myMap = new Map();
 
@@ -150,7 +150,9 @@
         //함수 내 변수 선언
         let id = document.querySelector("#userID").value;
         let password = document.getElementById("userPW").value;
-        let stars = document.querySelector('input[name="reviewStar"]:checked').value;
+        let selectedStars = document.querySelector('input[name="reviewStar"]:checked')
+        //null 값 체크
+        let stars = selectedStars ? selectedStars.value : String(false)
         let review = document.getElementById("userRV").value;
 
         //유효성 검사(id > password > review 순으로 진행됨)
@@ -158,6 +160,8 @@
           return;
         } else if(validationCheckPW(password) === false) {
           return;
+          } else if(validationCheckStars(stars) === false) {
+            return;  
           } else if(validationCheckRV(review) === false) {
               return;
           };
