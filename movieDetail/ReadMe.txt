@@ -16,28 +16,28 @@
 - if (o)
 - if-else (o)
 - if-else if-else (o)
-- switch ()
-- 삼항연산자 ()
-- 이중 if or if 내부 switch ()
+- switch (o)
+- 삼항연산자 (o)
+- 이중 if or if 내부 switch (o)
 
-6. 반복문
+6. 반복문(진영님 작업 중)
 - 일반 for 문 (o)
-- for ... in 문 or for ... of 문 ()
-- 일반 while 문 or do ~ while 문 ()
-- break문 or continue문 ()
+- for ... in 문 or for ... of 문 (o)
+- 일반 while 문 or do ~ while 문 (o)
+- break문 or continue문 (o)
 
-7. 객체 병합 ()
+7. 객체 병합 (o)
 
 8. 배열(1) 이 중 두개
  - push, pop, shift, unshift, splice, slice ()
 
 9. 배열(2) 이 중 세개
- - forEach, map, filter, reduce, find ()
+ - forEach, map, filter, reduce, find (o)
 
 10. 자료구조
- - Map or Set ()
+ - Map or Set (o)
 
-11. null, undefined (o)
+ 11. null, undefined (o)
 
 12. callback 함수(setTimeOut, setInterval) ()
 
@@ -47,4 +47,5 @@
  - innerHTML (o)
  - addEventListener (o)
 
-14. import, export ()
+14. import, export (o)
+
