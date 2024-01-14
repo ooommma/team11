@@ -138,65 +138,84 @@
       <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
     </footer>
     
-    <script src="view.js"></script>
+    <!-- <script src="view.js"></script> -->
     <script type="module">
+      //유효성 검사 함수 import
       import {validationCheckID, validationCheckPW, validationCheckRV} from './validationCheck.js'
+
+      let myMap = new Map();
+
+      //리뷰 작성 함수
       function creatingReview() {
+        //함수 내 변수 선언
         let id = document.querySelector("#userID").value;
         let password = document.getElementById("userPW").value;
         let stars = document.querySelector('input[name="reviewStar"]:checked').value;
         let review = document.getElementById("userRV").value;
 
-        
-        if(validationCheckID(id) === false) {
+        //유효성 검사(id > password > review 순으로 진행됨)
+  if(validationCheckID(id) === false) {
           return;
-        } else {
-          if(validationCheckPW(password) === false) {
-            return;
-          } else{
-            if(validationCheckRV(review) === false) {
+        } else if(validationCheckPW(password) === false) {
+          return;
+          } else if(validationCheckRV(review) === false) {
               return;
-            };
           };
-        };
 
-        let userInfo = JSON.stringify({
-          name: id,
-          password,
-          stars,
-          review
-        });
+          //유효성 검사를 통과한 데이터를 객체형태로 수집
 
-        localStorage.setItem(id, userInfo);
-        console.log(`계정이 생성되었습니다. ${userInfo}`);
+          //1. 텍스트박스에 입력된 데이터가 myMap 자료구조에 각각의 키로 저장되도록 유도
+
+myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}", "review": "${review}"}`)
+
+        //myMap 자료구조에 저장된 값을 로컬 스토리지로 이동하여 저장
+        localStorage.setItem(id, myMap.get(id));
 
         document.querySelector("#userID").value = "";
-        document.getElementById("userPW").value = 0;
+        document.getElementById("userPW").value = "";
         document.getElementById("userRV").value = "";
         location.reload();
       }
 
       function gettingReview() {
+        document.querySelector('.commentList').innerHTML = "";
         for (let i = 0; i < localStorage.length; i++) {
           let key = localStorage.key(i);
-          let result = (key === null || key === undefined) ? localStorage.removeItem(key) : localStorage.getItem(key);
-          const gettingValue = JSON.parse(result);
+          let result = (key !== null && key !== undefined) ? localStorage.getItem(key) : console.log('오류: 해당 유저가 존재하지 않습니다!');
+          let gettingValue = result;
+          switch (key) {
+            case null: 
+            gettingValue = result;
+            break;
+            case undefined:
+            gettingValue = result;
+            break;
+            default:
+              try {
+                gettingValue = JSON.parse(result);
+              } catch(error) {
+                console.error("Error parsing JSON", error);
+              };
+              break;
+          }
+          console.log("result2:", result)
+          
           const temp_html = `
-            <div class="comment-all" id="comment-all-container">
+            <div class="comment-all">
                 <div class="comment-container">
-                      <div class="comment-items" id="comment-all-info">
+                      <div class="comment-items">
                         <div class="comment-ID">
-                          <div class="comment-item">ID ${gettingValue.name}</div>
+                          <!-- gettingValue가 정의되지 않은 경우에 대한 처리 추가 -->
+                          <div class="comment-item">ID ${gettingValue.name ? gettingValue.name : 'N/A'}</div>
                         <div class="comment-Info">
-                          <div class="comment-item">별점 ${gettingValue.stars}</div>
-                          <div class="comment-item">코멘트 ${gettingValue.review}</div>
+                          <div class="comment-item">별점 ${gettingValue.stars ? gettingValue.stars : 'N/A'}</div>
+                          <div class="comment-item">코멘트 ${gettingValue.review ? gettingValue.review : 'N/A'}</div>
                         </div>
                       </div>
                   </div>
               </div>
         </div>
         `;
-
           document.querySelector(".commentList").innerHTML += temp_html;
         }
       }
@@ -205,17 +224,17 @@
 
       document.querySelector("#ToDeleteButton").addEventListener("click",  () => {
         const id = document.querySelector("#userID").value;
-        const password = Number(document.getElementById("userPW").value);
+        const password = document.getElementById("userPW").value;
         if (
           JSON.parse(localStorage.getItem(id)).name === id &&
           JSON.parse(localStorage.getItem(id)).password === password
         ) {
+          myMap.delete(id);
           localStorage.removeItem(id);
         }
-        // location.reload();
+        location.reload();
       });
-
-      gettingReview();
+      document.addEventListener("DOMContentLoaded", gettingReview);
     </script>
   </body>
 </html>
