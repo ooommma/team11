@@ -1,32 +1,31 @@
-let movies = [];
-
 document.addEventListener("DOMContentLoaded", async () => {
+  let movies = [];
   const sort = new URLSearchParams(window.location.search).get("sort");
   const page = new URLSearchParams(window.location.search).get("page");
-  await getMovieData(sort, page);
-  makeMovieCard();
-  sendIDToDetailPage();
+  await getMovieData(sort, page, movies);
+  makeMovieCard(movies);
+  sendIDToDetailPage(movies);
   makePageBtns();
 
   document.getElementById("searchMovie").addEventListener("keyup", () => {
-    searchMovie();
+    searchMovie(movies);
   });
 });
 
-// TMDB API Fetch Code
-const TMDB_API_KEY =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: TMDB_API_KEY
-  }
-};
-
 // 영화 데이터 생성 함수
-async function getMovieData(sort, page) {
+async function getMovieData(sort, page, movies) {
+  // TMDB API request Code
+  const TMDB_API_KEY =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
+
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: TMDB_API_KEY
+    }
+  };
+
   if (!sort) sort = "top_rated";
   if (!page) page = 1;
 
@@ -35,7 +34,7 @@ async function getMovieData(sort, page) {
   await fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
-      movies = data["results"];
+      movies.push(...data["results"]);
     })
     .catch((error) => {
       console.log(error);
@@ -44,7 +43,7 @@ async function getMovieData(sort, page) {
 }
 
 // 카드 생성 함수
-function makeMovieCard() {
+function makeMovieCard(movies) {
   movies.forEach((movie) => {
     let title = movie["title"];
     let overview = movie["overview"];
@@ -69,9 +68,8 @@ function makeMovieCard() {
 }
 
 // title로 검색 (대소문자, 공백 구분 X)
-function searchMovie() {
+function searchMovie(movies) {
   let searchStr = document.getElementById("searchMovie").value.toUpperCase().replace(" ", "");
-
   movies.forEach((movie) => {
     let title = movie["title"].toUpperCase().replace(" ", "");
     let element = document.getElementById(`${movie["id"]}`);
