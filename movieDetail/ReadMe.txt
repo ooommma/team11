@@ -22,17 +22,17 @@
 
 6. 반복문(진영님 작업 중)
 - 일반 for 문 (o)
-- for ... in 문 or for ... of 문 ()
-- 일반 while 문 or do ~ while 문 ()
-- break문 or continue문 ()
+- for ... in 문 or for ... of 문 (o)
+- 일반 while 문 or do ~ while 문 (o)
+- break문 or continue문 (o)
 
-7. 객체 병합 ()
+7. 객체 병합 (o)
 
 8. 배열(1) 이 중 두개
  - push, pop, shift, unshift, splice, slice ()
 
 9. 배열(2) 이 중 세개
- - forEach, map, filter, reduce, find ()
+ - forEach, map, filter, reduce, find (o)
 
 10. 자료구조
  - Map or Set (o)
@@ -49,44 +49,3 @@
 
 14. import, export (o)
 
-
-
-function gettingReview() {
-  for (let i = 0; i < localStorage.length; i++) {
-    let key = localStorage.key(i);
-    let result = (key !== null && key !== undefined) ? localStorage.getItem(key) : console.log('오류: 해당 유저가 존재하지 않습니다!');
-    let gettingValue;
-
-    switch (key) {
-      case null:
-      case undefined:
-        gettingValue = result;
-        break;
-      default:
-        try {
-          gettingValue = JSON.parse(result);
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-        }
-        break;
-    }
-
-    const temp_html = `
-      <div class="comment-all" id="comment-all-container">
-        <div class="comment-container">
-          <div class="comment-items" id="comment-all-info">
-            <div class="comment-ID">
-              <div class="comment-item">ID ${gettingValue.name}</div>
-              <div class="comment-Info">
-                <div class="comment-item">별점 ${gettingValue.stars}</div>
-                <div class="comment-item">코멘트 ${gettingValue.review}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.querySelector(".commentList").innerHTML += temp_html;
-  }
-}
