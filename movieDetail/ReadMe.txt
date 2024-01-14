@@ -18,7 +18,7 @@
 - if-else if-else (o)
 - switch (o)
 - 삼항연산자 (o)
-- 이중 if or if 내부 switch ()
+- 이중 if or if 내부 switch (o)
 
 6. 반복문(진영님 작업 중)
 - 일반 for 문 (o)

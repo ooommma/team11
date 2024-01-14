@@ -166,7 +166,7 @@
 
           //1. 텍스트박스에 입력된 데이터가 myMap 자료구조에 각각의 키로 저장되도록 유도
 
-myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}", "review": "${review}"}`)
+        myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}", "review": "${review}"}`)
 
         //myMap 자료구조에 저장된 값을 로컬 스토리지로 이동하여 저장
         localStorage.setItem(id, myMap.get(id));
@@ -181,9 +181,14 @@ myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}",
         document.querySelector('.commentList').innerHTML = "";
         for (let i = 0; i < localStorage.length; i++) {
           let key = localStorage.key(i);
-          let result = (key !== null && key !== undefined) ? localStorage.getItem(key) : console.log('오류: 해당 유저가 존재하지 않습니다!');
-          let gettingValue = result;
-          switch (key) {
+          let result;
+          let gettingValue;
+
+          if(key !== null && key !== undefined) {
+            result = localStorage.getItem(key);
+            gettingValue = result;
+
+            switch (key) {
             case null: 
             gettingValue = result;
             break;
@@ -197,9 +202,12 @@ myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}",
                 console.error("Error parsing JSON", error);
               };
               break;
-          }
-          console.log("result2:", result)
-          
+          };
+          } else {
+            console.log('오류: 해당 유저가 존재하지 않습니다.')
+          };
+
+
           const temp_html = `
             <div class="comment-all">
                 <div class="comment-container">
