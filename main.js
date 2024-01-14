@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  let movies = [];
   const sort = new URLSearchParams(window.location.search).get("sort");
   const page = new URLSearchParams(window.location.search).get("page");
-  await getMovieData(sort, page, movies);
+  if (!sort) window.location.href = `index.html?sort=top_rated&page=1`;
+
+  let movies = await getMovieData(sort, page);
   makeMovieCard(movies);
   sendIDToDetailPage(movies);
-  makePageBtns();
+  makePageBtns(sort, page);
 
   document.getElementById("searchMovie").addEventListener("keyup", () => {
     searchMovie(movies);
@@ -13,7 +14,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 // 영화 데이터 생성 함수
-async function getMovieData(sort, page, movies) {
+async function getMovieData(sort, page) {
+  if (!sort) return;
+
+  let movies = [];
   // TMDB API request Code
   const TMDB_API_KEY =
     "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
@@ -26,11 +30,7 @@ async function getMovieData(sort, page, movies) {
     }
   };
 
-  if (!sort) sort = "top_rated";
-  if (!page) page = 1;
-
   let url = `https://api.themoviedb.org/3/movie/${sort}?language=ko-KR&page=${page}`;
-
   await fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
@@ -40,6 +40,8 @@ async function getMovieData(sort, page, movies) {
       console.log(error);
       alert("잘못된 API 접근입니다.");
     });
+
+  return movies;
 }
 
 // 카드 생성 함수
@@ -94,23 +96,40 @@ function sendIDToDetailPage() {
 }
 
 // 페이징 함수
-function makePageBtns() {
-  let pageBox = document.getElementById("pageBox");
-  let pageHTML = "";
-  for (let i = 1; i <= 5; i++) {
-    pageID = `page=${i}`;
+function makePageBtns(curSort, curPage) {
+  let goto = curPage;
+  while (1) {
+    goto++;
+    if ((goto - 1) % 5 === 0) break;
+  }
+
+  let pageHTML = `<span class="preBtn" id="preBtn">이전</span>`;
+  if (curPage <= 5) pageHTML = "";
+  for (let i = 5; i > 0; i--) {
     pageHTML += `
-    <span class="pages" id="${pageID}">${i}</span>`;
+    <span class="pages" id="${goto - i}">${goto - i}</span>`;
   }
   pageHTML += `
-  <span id="nextBtn">다음</span>`;
+  <span class="nextBtn" id="nextBtn">다음</span>`;
 
-  pageBox.innerHTML = pageHTML;
+  document.getElementById("pageBox").innerHTML = pageHTML;
+  document.getElementById(curPage).style.color = "black";
 
+  // 페이지 이동
   [...document.querySelectorAll(".pages")].map((element) => {
     let pageID = element.getAttribute("id");
     element.addEventListener("click", () => {
-      window.location.href = `index.html?${pageID}`;
+      window.location.href = `index.html?sort=${curSort}&page=${pageID}`;
     });
+  });
+
+  if (curPage > 5) {
+    document.getElementById("preBtn").addEventListener("click", () => {
+      window.location.href = `index.html?sort=${curSort}&page=${goto - 10}`;
+    });
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    window.location.href = `index.html?sort=${curSort}&page=${goto}`;
   });
 }
