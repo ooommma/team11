@@ -166,10 +166,15 @@
 
           //1. 텍스트박스에 입력된 데이터가 myMap 자료구조에 각각의 키로 저장되도록 유도
 
-        myMap.set(id, `{"name": "${id}", "password": "${password}", "stars": "${stars}", "review": "${review}"}`)
+        myMap.set(id, {"name": id, "password": password, "stars": stars})
+
+        let forMergingRV = {"review": review}
+
+        let MergedId = JSON.stringify({...myMap.get(id), ...forMergingRV});
+        console.log(MergedId);
 
         //myMap 자료구조에 저장된 값을 로컬 스토리지로 이동하여 저장
-        localStorage.setItem(id, myMap.get(id));
+        localStorage.setItem(id, MergedId);
 
         document.querySelector("#userID").value = "";
         document.getElementById("userPW").value = "";
