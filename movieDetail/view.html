@@ -27,7 +27,6 @@
       </nav>
     </div>
 
-
     <!-- 헤더 오른쪽 몰기-->
     <div class="HeaderRight">
       <nav class="headerContainer">
@@ -44,20 +43,28 @@
   </header>
 
 
-  <section id="movieWrapper">
-    
+  <section id="DetailWrapper">
+    <div id="loadingMovieBox" class="loading loading-flash">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="movieWrapper"></div>
   </section>
 
   <!-- 출연/ 제작 카드 리스트 -->
-  <section>
-    <div>
-      <div class="Cast">
-        <h2>제작/출연자</h2>
-      </div>
+  <section id="creditWrapper">
+    <div class="Cast">
+      <h2>제작/출연자</h2>
     </div>
-    <div class="cast-all" id="castWrapper">
-      
+    <div id="loadingCreaditBox" class="loading loading-flash">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <div class="cast-all" id="castWrapper"></div>
   </section>
 
 

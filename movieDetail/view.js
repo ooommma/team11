@@ -1,7 +1,22 @@
+/* 변수 선언 */
+const movieWrapper = document.getElementById("movieWrapper");
+const castWrapper = document.getElementById("castWrapper");
+const loadingBox = document.getElementsByClassName("loading");
+/* id값 받아오기 */
 function getQueryParam(param) {
   let searchParams = new URLSearchParams(window.location.search);
   return searchParams.get(param);
 }
+
+/* 로딩중 인디케이터 없애기 */ 
+function hideLoadingIndicator() {
+  for (let i = 0; i < loadingBox.length; i++) {
+    loadingBox[i].style.display = 'none';
+  }
+  movieWrapper.style.display = 'block';
+  castWrapper.style.display = 'block';
+}
+
 const TMDB_API_KEY =
   "";
 
@@ -9,6 +24,10 @@ const TMDB_API_KEY =
 document.addEventListener("DOMContentLoaded", function () {
   // URL에서 영화 ID 추출
   let movieId = getQueryParam("id");
+
+  /* 로딩 화면을 위해 Wrapper 가림 */
+  movieWrapper.style.display = 'none';
+  castWrapper.style.display = 'none';
 
   //movieId 없는 경우 상세페이지 이동 불가
   if (!movieId) {
@@ -38,16 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
       return Promise.all(responses.map((response) => response.json()));
     })
     .then((data) => {
-      // data[0]는 첫 번째 API 응답, data[1]는 두 번째 API 응답
-      console.log("첫 번째 API 응답:", data[0]);
-      const movieWrapper = document.getElementById("movieWrapper");
-      const castWrapper = document.getElementById("castWrapper");
-
       //장르 데이터 obj 쪼개서 넣기
       let movieGenres = [];
       data[0].genres.forEach((element) => {
         movieGenres.push(element.name);
       });
+
+      // 최소 1.4초 동안 로딩 표시 후 숨김 처리
+      setTimeout(hideLoadingIndicator, 1000);
 
       //트레일러 비디오 찾기
       let movieVideos = data[1].results;
@@ -111,17 +128,18 @@ document.addEventListener("DOMContentLoaded", function () {
         1) 감독(director) 정보 찾아옴
         1-2) 감독 한국 프로필과 매칭하여 credits에 삽입
         2) cast 정보 for of로 credits에 삽입
+        -> 감독 포함 8개
         3) forEach로 캐스트 정보 불러오기
       */ 
       let credits = [];
       let director = data[2].crew.find((element)=>element.job === "Director");
       credits.push(director);
-
+      
       for (var value of data[2].cast) {
         credits.push(value);
       }
-      
-      credits.forEach((element)=> {
+
+      credits.slice(0,8).forEach((element)=> {
         let profileImg = element.profile_path ? `<img src='https://image.tmdb.org/t/p/w500/${element.profile_path}' class="img-size">` : `<p>이미지가 없습니다.</p>`;
         let creditsInfo = `
         <div class="cast-items" id="cast-all-info">
@@ -140,5 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((err) => {
       console.error("API 호출 중 오류 발생:", err);
+      for (let i = 0; i < loadingBox.length; i++) {
+        loadingBox[i].innerHTML = '데이터를 불러오는 데 실패했습니다.';
+      }
+      setTimeout(hideLoadingIndicator, 1000);
     });
 });
