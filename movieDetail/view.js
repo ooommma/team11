@@ -3,8 +3,9 @@ function getQueryParam(param) {
   return searchParams.get(param);
 }
 const TMDB_API_KEY =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
+  "";
 
+/* view.html 로딩시 */
 document.addEventListener("DOMContentLoaded", function () {
   // URL에서 영화 ID 추출
   let movieId = getQueryParam("id");
@@ -23,12 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  const apiURL1 = "https://api.themoviedb.org/3/movie/" + movieId + "?language=ko-KO";
-  const apiURL2 = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=ko-KO"; // 두 번째 API 주소
+  const apiDetail = "https://api.themoviedb.org/3/movie/" + movieId + "?language=ko-KO";
+  const apiVideos = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=ko-KO"; // 두 번째 API 주소
+  const apiCredits ="https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=ko-KO" // 세 번째... 출연진
 
   Promise.all([
-    fetch(apiURL1, options),
-    fetch(apiURL2, options) 
+    fetch(apiDetail, options),
+    fetch(apiVideos, options),
+    fetch(apiCredits, options),
   ])
     .then((responses) => {
       // 모든 응답을 JSON으로 변환
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // data[0]는 첫 번째 API 응답, data[1]는 두 번째 API 응답
       console.log("첫 번째 API 응답:", data[0]);
       const movieWrapper = document.getElementById("movieWrapper");
+      const castWrapper = document.getElementById("castWrapper");
 
       //장르 데이터 obj 쪼개서 넣기
       let movieGenres = [];
@@ -50,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let movieTrailerIdx = movieVideos.findIndex((str) => str.type === "Trailer");
       let movieTrailer =
         movieTrailerIdx !== -1
-          ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${movieVideos[movieTrailerIdx].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+          ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${movieVideos[movieTrailerIdx].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowfullscreen></iframe>`
           : `<p class="no-trailer">트레일러가 없습니다.</p>`;
 
       let movieContents = `
@@ -99,10 +103,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
       </div>`;
 
+      /* 영화 상세정보(기본)과 트레일러 삽입 */
       movieWrapper.insertAdjacentHTML("beforeend", movieContents);
 
-      console.log("두 번째 API 응답:", movieTrailer);
-      //console.log("두 번째 API 응답:", data[1].results[0]);
+      /* 
+        출연진 정보 삽입
+        1) 감독(director) 정보 찾아옴
+        1-2) 감독 한국 프로필과 매칭하여 credits에 삽입
+        2) cast 정보 for of로 credits에 삽입
+        3) forEach로 캐스트 정보 불러오기
+      */ 
+      let credits = [];
+      let director = data[2].crew.find((element)=>element.job === "Director");
+      credits.push(director);
+
+      for (var value of data[2].cast) {
+        credits.push(value);
+      }
+      
+      credits.forEach((element)=> {
+        let profileImg = element.profile_path ? `<img src='https://image.tmdb.org/t/p/w500/${element.profile_path}' class="img-size">` : `<p>이미지가 없습니다.</p>`;
+        let creditsInfo = `
+        <div class="cast-items" id="cast-all-info">
+          <div class="cast-itemImg">
+            ${profileImg}
+          </div>
+          <div class="cast-itemInfo">
+            <div class="cast-item">${element.original_name}</div>
+            <div class="cast-item">${element.known_for_department}</div>
+          </div>
+        </div>
+        `
+        castWrapper.insertAdjacentHTML("beforeend", creditsInfo);
+      });
+
     })
     .catch((err) => {
       console.error("API 호출 중 오류 발생:", err);
