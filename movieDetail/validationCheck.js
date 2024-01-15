@@ -1,3 +1,6 @@
+//ID 유효성 검사(null/undefined값, 잘못된 형식, 문자열 길이)
+//return만 하면 유효성 검사 함수만 끝나고, 모함수인 creatingReview는 끝나지 않음.
+//그래서 이를 끝낼 수 있는 로직을 설계하기 위해 조건에 따라 true or false를 반환하도록 한 것
 export function validationCheckID(id) {
   if (id === null || id === undefined || id === "") {
     document.querySelector("#userID").value = "";
@@ -20,7 +23,8 @@ export function validationCheckID(id) {
   }
   return true;
 }
-// 여기서 return은 해당 함수의 실행을 그만 두고 빠져 나가는 거임.
+
+//password 유효성 검사(null/undefined값, 잘못된 형식, 문자열 길이)
 export function validationCheckPW(password) {
   if (password === null || password === undefined || password === 0) {
     document.querySelector("#userID").value = "";
@@ -30,6 +34,7 @@ export function validationCheckPW(password) {
     return false;
   } else if (!isNaN(password) && password.length === 4) {
     password = Number(password);
+    //숫자형식으로 저장하기 위함(문자열로 저장하는 경우를 막기 위함)
   } else if (!isNaN(password) && password.length !== 4) {
     document.querySelector("#userID").value = "";
     document.getElementById("userPW").value = "";
@@ -46,10 +51,7 @@ export function validationCheckPW(password) {
   return (password = Number(password));
 }
 
-// let selectedStars = document.querySelector('input[name="reviewStar"]:checked')
-// //null 값 체크
-// let stars = selectedStars ? selectedStars.value : String(false)
-
+//별점 유효성 검사(별점 체크 여부)
 export function validationCheckStars(stars) {
   while (stars === String(false)) {
     document.querySelector("#userID").value = "";
@@ -61,6 +63,7 @@ export function validationCheckStars(stars) {
   return true;
 }
 
+//리뷰 유효성 검사(null/undefined값, 잘못된 형식, 문자열 길이)
 export function validationCheckRV(review) {
   if (review === null || review === undefined || review === "") {
     document.querySelector("#userID").value = "";
