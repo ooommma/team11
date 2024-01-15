@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  parent.location.hash = "#searchMovie";
   const sort = new URLSearchParams(window.location.search).get("sort");
   const page = new URLSearchParams(window.location.search).get("page");
   if (!sort) window.location.href = `index.html?sort=top_rated&page=1`;
@@ -75,11 +76,23 @@ function makeMovieCard(movies) {
 // title로 검색 (대소문자, 공백 구분 X)
 function searchMovie(movies) {
   let searchStr = document.getElementById("searchMovie").value.toUpperCase().replace(" ", "");
+  // 유효성 검사
+  if (!/^[A-Z|0-9|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(searchStr)) {
+    if (/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"|  ]/g.test(searchStr)) {
+      alert("특수문자는 입력 불가합니다. 영어나 한국어를 입력 해주세요.");
+    } else {
+      alert("영어나 한국어로 입력 해주세요.");
+    }
+    document.getElementById("searchMovie").value = null;
+    return;
+  }
+
   movies.forEach((movie) => {
-    let title = movie["title"].toUpperCase().replace(" ", "");
+    let originTitle = movie["original_title"].toUpperCase().replace(" ", "");
+    let title = movie["title"].replace(" ", "");
     let element = document.getElementById(`${movie["id"]}`);
 
-    if (title.includes(searchStr)) {
+    if (originTitle.includes(searchStr) || title.includes(searchStr)) {
       element.style.display = "grid";
     } else {
       element.style.display = "none";
@@ -145,7 +158,6 @@ function sorting(curSort) {
 
   sortArr.forEach((sort) => {
     document.getElementById(sort).addEventListener("click", () => {
-      console.log(sort);
       window.location.href = `index.html?sort=${sort}&page=1`;
     });
   });
