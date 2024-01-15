@@ -1,6 +1,7 @@
 //ID 유효성 검사(null/undefined값, 잘못된 형식, 문자열 길이)
 //return만 하면 유효성 검사 함수만 끝나고, 모함수인 creatingReview는 끝나지 않음.
 //그래서 이를 끝낼 수 있는 로직을 설계하기 위해 조건에 따라 true or false를 반환하도록 한 것
+
 export function validationCheckID(id) {
   if (id === null || id === undefined || id === "") {
     document.querySelector("#userID").value = "";
