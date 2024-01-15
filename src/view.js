@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //장르 데이터 obj 쪼개서 넣기
       let movieGenres = [];
       data[0].genres.forEach((element) => {
-        movieGenres.push(element.name);
+        movieGenres.push(" " + element.name);
       });
 
       // 최소 1초 동안 로딩 표시 후 숨김 처리
@@ -94,13 +94,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <h2 class="movieTitle">${data[0].title}</h2>
             <img src='https://image.tmdb.org/t/p/w500/${data[0].poster_path}' alt="" style="width: 300px" />
           </div>
-          <p>영화 평점 : ${data[0].vote_average}</p>
+          <p>★${data[0].vote_average}</p>
         </div>
         <!--//movieLeft-->
 
         <div id="movieRight" class="rightContent">  
           <div class='rightBox'>
             <p id="averageRate" class="averageRate"></p>
+            <p class="tit">개요</p>
             <p>${data[0].overview}</p>
             <div id="movieVideo">
               <p class="tit">영화 예고편</p>
