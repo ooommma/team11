@@ -32,11 +32,18 @@ async function getMovieData(sort, page) {
     }
   };
 
-  let url = `https://api.themoviedb.org/3/movie/${sort}?language=ko-KR&page=${page}`;
-  await fetch(url, options)
-    .then((response) => response.json())
+  let koUrl = `https://api.themoviedb.org/3/movie/${sort}?language=ko-KR&page=${page}`;
+  let enUrl = `https://api.themoviedb.org/3/movie/${sort}?language=en-US&page=${page}`;
+  await Promise.all([fetch(koUrl, options), fetch(enUrl, options)])
+    .then((response) => Promise.all(response.map((res) => res.json())))
     .then((data) => {
-      movies.push(...data["results"]);
+      let movieData = [...data[0]["results"]];
+      movieData.reduce((_, cur, idx) => {
+        if (!cur["overview"]) {
+          cur["overview"] = data[1]["results"][idx]["overview"];
+        }
+      });
+      movies = movieData;
     })
     .catch((error) => {
       console.log(error);
@@ -51,14 +58,15 @@ function makeMovieCard(movies) {
   movies.forEach((movie) => {
     let title = movie["title"];
     let overview = movie["overview"];
-    if (overview.length > 100) overview = overview.substr(0, 100) + "...";
     let poster_path = movie["poster_path"];
     let vote_average = movie["vote_average"];
     let id = movie["id"];
 
+    if (overview.length > 100) overview = overview.substr(0, 100) + "...";
+    if (!overview) overview = "데이터가 아직 수집되지 않았습니다.";
     let card_html = `
             <div class="movie-card" id="${id}">
-                <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="poster image">
+                <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="이미지가 없습니다.">
                 <div class="card-body">
                     <div class="card-title"><a href="https://www.themoviedb.org/movie/${id}" target="blank">${title}</a></div>
                     <p class="overview">${overview}</p>
