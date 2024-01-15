@@ -114,7 +114,7 @@ function sendIDToDetailPage() {
   movieList.forEach((movie) => {
     movie.addEventListener("click", () => {
       const movieId = movie.getAttribute("data-id");
-      window.location.href = `movieDetail/view.html?id=${movieId}`;
+      window.location.href = `src/view.html?id=${movieId}`;
     });
   });
 }

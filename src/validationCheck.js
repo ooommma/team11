@@ -72,11 +72,11 @@ export function validationCheckRV(review) {
     document.getElementById("userRV").value = "";
     alert("RV: 리뷰를 작성하세요.");
     return false;
-  } else if (review.length < 50 || review.length > 1000) {
+  } else if (review.length < 10 || review.length > 500) {
     document.querySelector("#userID").value = "";
     document.getElementById("userPW").value = "";
     document.getElementById("userRV").value = "";
-    alert("RV: 리뷰는 50자 이상 1,000자 이내로 작성하실 수 있습니다.");
+    alert("RV: 리뷰는 10자 이상 500자 이내로 작성하실 수 있습니다.");
     return false;
   }
   return true;
