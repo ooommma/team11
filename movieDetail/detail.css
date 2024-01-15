@@ -2,8 +2,9 @@
 body,
 section {
   width: auto;
-  padding: 10px 10px 0px 10px;
-  margin: 10px 10px 0px 10px;
+}
+section {
+  padding: 0 20px;
 }
 
 * {
@@ -22,11 +23,9 @@ a {
 /* 헤드라인 */
 .Header {
   width: auto;
-  display: inline-block;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  margin: 10px;
   /* background-color: aqua; */
 }
 
@@ -113,7 +112,8 @@ a {
 .movieImg {
   display: flex;
   flex-direction: column;
-  align-items: center;;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .averageRate p {
@@ -122,7 +122,7 @@ a {
 
 /* 메인 파트2 : 출연자 카드 */
 #creditWrapper {
-  margin-top: 20px; padding-top: 20px;
+  margin: 20px; padding-top: 20px;
   border-top: 1px solid #000;
 }
 
@@ -138,24 +138,121 @@ a {
   margin-bottom: 5px;
 }
 
+.cast-all{
+  grid-template-columns: repeat(6, 1fr);
+}
 .cast-items {
-  width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  padding: 10px;
 }
 
 .cast-itemInfo {
   display: inline-block;
 }
 
-.cast-all{
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
+#reviewWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid #000;
+}
+.reviewBox {
+  width: 100%;
+  max-width: 500px;
+  margin: 40px 0;
+}
+.reviewBox p {
+  margin: 0 !important;
+}
+.reviewBox .userBox {
+  position: relative;
+}
+.reviewBox .userBox input,
+.reviewBox .userBox textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+  background: transparent;
+}
+.reviewBox textarea {
+  resize: none;
+  border: 1px solid #ccc;
+}
+
+.reviewBox .userBox label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #ccc;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.reviewBox .userBox input:focus ~ label,
+.reviewBox .userBox input:valid ~ label,
+.reviewBox .userBox textarea:focus ~ label {
+  top: -20px;
+  left: 0;
+  color: #0ea6fd;
+  font-size: 12px;
+}
+
+.reviewBox input::placeholder,
+.reviewBox textarea::placeholder {
+  text-align: center;
+  color: #ccc;
+  font-size: 12px;
+}
+
+.reviewBox .Ment {
+  margin-top: 20px;
+  color: #333;
+  font-size: calc(1.275rem + .3vw);
+}
+.reviewBox .Star {
+  margin-bottom: 20px;
+}
+.reviewBox .commentBox {
+  margin-top: 20px;
+}
+.reviewBox .inputComment {
+  width: 100%;
+}
+
+.reviewBox .inputComment {
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.reviewBox button {
+  border: none;
+  background: #0ea6fd;
+  outline: 0;
+  width: 100%;
+  margin-top: 5px;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px;
+  transition: ease-in-out 0.2s all;
+}
+.reviewBox button:hover {
+  background: #82cbf6;
+}
 #allComment {
   padding: 7px;
   margin: 7px;
@@ -173,15 +270,12 @@ a {
 
 /* 메인 파트2 : 코멘트 카드 */
 .commentList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .comment-all {
-  width: 21%;
-  margin-top: 20px;
-  margin-right: 4%;
+  padding: 0 20px;
 }
 
 .comment-item {
@@ -194,18 +288,19 @@ input::placeholder {
 
 /* 맨 아래 */
 .foot {
-  background-color: rgb(201, 200, 200);
-  padding-top: 5px;
-  margin-top: 25px;
+  border-top: 1px solid #000;
+  padding: 20px;
+  margin: 20px;
+  box-sizing: border-box;
+  font-size: 11px;
 }
 
 .footContainer {
   display: flex;
 }
+.foot p {margin-bottom: 0 !important;}
+.foot address {margin: 0;}
 
-.footItem {
-  display: inline-block;
-}
 
 /**********
   Loading
@@ -259,13 +354,26 @@ input::placeholder {
   }
   .movieImg, .movieImg img {
     width: 100%;
+    margin-right: 0;
   }
-  .comment-all,.cast-items {
-    width: 45%;
+  .commentList {
+    grid-template-columns: 1fr 1fr;
+  }
+  .comment-all {
+    padding: 10px 20px;
+  }
+  .cast-all{
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media screen and (max-width: 768px){
-  .comment-all {
-    width: 95%;
+  .commentList {
+    grid-template-columns: 1fr;
+  }
+  .cast-all{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #movieVideo iframe {
+    width: 100% !important;
   }
 }

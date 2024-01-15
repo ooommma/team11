@@ -69,18 +69,26 @@
 
 
   <!-- 코멘트 카드 리스트-->
-  <section>
+  <section id="reviewWrapper">
     <!-- 아이디/비밀번호/리뷰 등록창-->
-    <div>
+    <div class="reviewBox">
       <div class="Idpw">
-        <p>아이디 : <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." /></p>
-        <p>비밀번호 : <input type="password" id="userPW" placeholder="4자리 숫자로 입력해 주세요." /></p>
+        <div class="userBox">
+          <input type="text" id="userID" placeholder="6~10자리로 입력해 주세요." required/>
+          <label for="userID">ID</label>
+        </div>
+
+        <div class="userBox">
+          <input type="password" id="userPW" placeholder="4자리 숫자로 입력해 주세요." required/>
+          <label for="userPW">Password</label>
+        </div>
+
       </div>
 
       <!-- 별점 -->
       <!-- <span> -->
       <div class="Ment">
-        <legend>당신의 별점은?</legend>
+        <p>당신의 별점은?</p>
       </div>
       <!-- 별점 체크 -->
       <div class="Star">
@@ -92,32 +100,27 @@
       </div>
 
       <!-- 코멘트 입력 -->
-      <p>
-        감상 :
-        <input
-          type="text"
-          class="inputComment"
-          id="userRV"
-          placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)"
-        />
-      </p>
+      <div class="userBox commentBox">
+        <textarea class="inputComment"
+        name="userRV" id="userRV" cols="30" rows="10" placeholder="여러분의 감상을 남겨주세요 !(50자 이상, 1,000자 이하)"></textarea>
+        <label for="userRV">감상</label>
+      </div>
 
       <!-- 최종 -->
       <p><button id="ToWriteButton">등록하기/수정하기</button></p>
       <p><button id="ToDeleteButton">삭제하기</button></p>
       <!-- </span> -->
 
+    </div>
+
     <!-- 리뷰카드 리스트 -->
     <div class="commentList" id="comment-all-container"></div>
-  </section>
-
+    </section>
 
     <!-- 바닥글 -->
     <footer class="foot">
       <nav class="footCcontainer">
         <li class="footItem"><a href="../index.html">홈으로</a></li>
-        <li class="footItem">고객 센터</li>
-        <li class="footItem">문의 하기</li>
       </nav>
       <p>Copyright © 2024 Node.js_4기 2주차 11조 All rights reserved.</p>
       <address>Contact webmaster for more information. https://github.com/ooommma/team11</address>
