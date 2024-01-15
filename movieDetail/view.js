@@ -8,17 +8,17 @@ function getQueryParam(param) {
   return searchParams.get(param);
 }
 
-/* 로딩중 인디케이터 없애기 */ 
+/* 로딩중 인디케이터 없애기 */
 function hideLoadingIndicator() {
   for (let i = 0; i < loadingBox.length; i++) {
-    loadingBox[i].style.display = 'none';
+    loadingBox[i].style.display = "none";
   }
-  movieWrapper.style.display = 'block';
-  castWrapper.style.display = 'block';
+  movieWrapper.style.display = "block";
+  castWrapper.style.display = "block";
 }
 
 const TMDB_API_KEY =
-  "";
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
 
 /* view.html 로딩시 */
 document.addEventListener("DOMContentLoaded", function () {
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let movieId = getQueryParam("id");
 
   /* 로딩 화면을 위해 Wrapper 가림 */
-  movieWrapper.style.display = 'none';
-  castWrapper.style.display = 'none';
+  movieWrapper.style.display = "none";
+  castWrapper.style.display = "none";
 
   //movieId 없는 경우 상세페이지 이동 불가
   if (!movieId) {
@@ -45,13 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const apiDetail = "https://api.themoviedb.org/3/movie/" + movieId + "?language=ko-KO";
   const apiVideos = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=ko-KO"; // 두 번째 API 주소
-  const apiCredits ="https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=ko-KO" // 세 번째... 출연진
+  const apiCredits = "https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=ko-KO"; // 세 번째... 출연진
 
-  Promise.all([
-    fetch(apiDetail, options),
-    fetch(apiVideos, options),
-    fetch(apiCredits, options),
-  ])
+  Promise.all([fetch(apiDetail, options), fetch(apiVideos, options), fetch(apiCredits, options)])
     .then((responses) => {
       // 모든 응답을 JSON으로 변환
       return Promise.all(responses.map((response) => response.json()));
@@ -130,17 +126,19 @@ document.addEventListener("DOMContentLoaded", function () {
         2) cast 정보 for of로 credits에 삽입
         -> 감독 포함 8개
         3) forEach로 캐스트 정보 불러오기
-      */ 
+      */
       let credits = [];
-      let director = data[2].crew.find((element)=>element.job === "Director");
+      let director = data[2].crew.find((element) => element.job === "Director");
       credits.push(director);
-      
+
       for (var value of data[2].cast) {
         credits.push(value);
       }
 
-      credits.slice(0,8).forEach((element)=> {
-        let profileImg = element.profile_path ? `<img src='https://image.tmdb.org/t/p/w500/${element.profile_path}' class="img-size">` : `<p>이미지가 없습니다.</p>`;
+      credits.slice(0, 8).forEach((element) => {
+        let profileImg = element.profile_path
+          ? `<img src='https://image.tmdb.org/t/p/w500/${element.profile_path}' class="img-size">`
+          : `<p>이미지가 없습니다.</p>`;
         let creditsInfo = `
         <div class="cast-items" id="cast-all-info">
           <div class="cast-itemImg">
@@ -151,15 +149,14 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="cast-item">${element.known_for_department}</div>
           </div>
         </div>
-        `
+        `;
         castWrapper.insertAdjacentHTML("beforeend", creditsInfo);
       });
-
     })
     .catch((err) => {
       console.error("API 호출 중 오류 발생:", err);
       for (let i = 0; i < loadingBox.length; i++) {
-        loadingBox[i].innerHTML = '데이터를 불러오는 데 실패했습니다.';
+        loadingBox[i].innerHTML = "데이터를 불러오는 데 실패했습니다.";
       }
       setTimeout(hideLoadingIndicator, 1000);
     });
