@@ -16,6 +16,9 @@ a {
   text-decoration: none;
 }
 
+.tit {
+  font-weight: bold;
+}
 /* 헤드라인 */
 .Header {
   width: auto;
@@ -61,12 +64,6 @@ a {
   /* background-color: rgba(248, 218, 187, 0.626); */
 }
 
-/* 무비 Wrapper */
-#movieWrapper {
-  padding: 1px 5px 0 5px;
-  margin: 0px 5px 0 5px;
-}
-
 .mainCenter {
   /* background-color: rgb(239, 239, 126); */
   padding: 5px 5px 30px 5px;
@@ -74,14 +71,16 @@ a {
   border-bottom: 1px solid black;
 }
 
-.movieImg {
-  margin: 0 50px 0 0;
-  display: inline-block;
+.mainBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
-.movieGenres {
-  display: inline-block;
-  margin: 0 10px 0 10px;
+.movieGenres, .movieRT {
+  margin-right: 5px;
+  margin-top: 20px;
 }
 
 .movieRT {
@@ -90,60 +89,70 @@ a {
 
 /* 메인 파트 : 영화 내용 소개 및 예고편 */
 .Leftright {
-  display: inline-block;
   display: flex;
-  justify-content: space-around;
-  width: auto;
+  justify-content: space-between;
   padding: 5px 0 1px 0;
   margin: 5px 0 1px 0;
 }
 
+#movieLeft {
+  flex:1;
+}
+#movieRight {
+  flex:2;
+}
+
 .leftPoster {
-  display: inline-block;
+  display: flex;
   justify-content: center;
-  text-align: center;
-  padding: 5px 25px 10px 25px;
-  margin: 10px 1px 0px 0px;
+  align-items: center;
+  flex-direction: column;
   /* background-color: aquamarine; */
 }
 
-.rightContent {
-  display: inline-block;
-  width: 80%;
-  text-align: center;
-  padding: 5px 25px 10px 25px;
-  margin: 10px 0px 0px 2px;
-  /* background-color: darksalmon; */
+.movieImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;;
+}
+
+.averageRate p {
+  margin: 0 !important;
 }
 
 /* 메인 파트2 : 출연자 카드 */
-.Cast {
+#creditWrapper {
+  margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid #000;
+}
+
+.cast {
   /* background-color: rgb(255, 196, 36); */
   display: flex;
   border-bottom: 1px solid black;
 }
 
 .img-size {
-  justify-content: center;
+  justify-content: start;
   width: 100px;
   margin-bottom: 5px;
 }
 
 .cast-items {
-  display: inline-block;
-  /* background-color: rgb(43, 226, 52); */
-  border-radius: 5px;
-  width: 20%;
-  padding: 10px 5px 5px 5px;
-  margin: 2.5px;
-}
-
-.cast-itemImg {
-  display: inline-block;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .cast-itemInfo {
   display: inline-block;
+}
+
+.cast-all{
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
@@ -163,17 +172,20 @@ a {
 }
 
 /* 메인 파트2 : 코멘트 카드 */
-.comment-all {
-  display: inline-block;
-  /* background-color: rgb(157, 155, 155); */
-  border-radius: 5px;
-  width: 20%;
-  padding: 10px 5px 5px 5px;
-  margin: 2.5px;
+.commentList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
 }
 
-.comment-list {
-  border-bottom: 1px solid black;
+.comment-all {
+  width: 21%;
+  margin-top: 20px;
+  margin-right: 4%;
+}
+
+.comment-item {
+  text-align: justify;
 }
 
 input::placeholder {
@@ -198,7 +210,6 @@ input::placeholder {
 /**********
   Loading
 **********/
-
 .loading {
   text-align: center;
   margin: 20px auto;
@@ -234,5 +245,27 @@ input::placeholder {
   }
   100% {
     opacity: 1;
+  }
+}
+
+
+
+/**********
+  Media Query
+**********/
+@media screen and (max-width: 1024px){
+  .Leftright {
+    flex-direction: column;
+  }
+  .movieImg, .movieImg img {
+    width: 100%;
+  }
+  .comment-all,.cast-items {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 768px){
+  .comment-all {
+    width: 95%;
   }
 }
