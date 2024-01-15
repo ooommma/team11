@@ -1,18 +1,16 @@
-/* 링크 데코 없애기 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=PT+Serif:wght@700&display=swap");
+
 body,
 section {
+  font-family: "Noto Serif KR", serif;
   width: auto;
 }
 section {
   padding: 0 20px;
 }
 
-* {
-  font-family: "PT Serif", serif;
-}
-
-li,
-a {
+a,
+li {
   list-style: none;
   text-decoration: none;
 }
@@ -22,11 +20,11 @@ a {
 }
 /* 헤드라인 */
 .Header {
+  font-family: "PT Serif";
   width: auto;
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  /* background-color: aqua; */
 }
 
 .headerLeft {
@@ -77,7 +75,8 @@ a {
   justify-content: center;
 }
 
-.movieGenres, .movieRT {
+.movieGenres,
+.movieRT {
   margin-right: 5px;
   margin-top: 20px;
 }
@@ -95,10 +94,10 @@ a {
 }
 
 #movieLeft {
-  flex:1;
+  flex: 1;
 }
 #movieRight {
-  flex:2;
+  flex: 2;
 }
 
 .leftPoster {
@@ -122,7 +121,8 @@ a {
 
 /* 메인 파트2 : 출연자 카드 */
 #creditWrapper {
-  margin: 20px; padding-top: 20px;
+  margin: 20px;
+  padding-top: 20px;
   border-top: 1px solid #000;
 }
 
@@ -138,7 +138,7 @@ a {
   margin-bottom: 5px;
 }
 
-.cast-all{
+.cast-all {
   grid-template-columns: repeat(6, 1fr);
 }
 .cast-items {
@@ -152,7 +152,6 @@ a {
 .cast-itemInfo {
   display: inline-block;
 }
-
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
 #reviewWrapper {
@@ -194,13 +193,13 @@ a {
 
 .reviewBox .userBox label {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   padding: 10px 0;
   font-size: 16px;
   color: #ccc;
   pointer-events: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .reviewBox .userBox input:focus ~ label,
@@ -222,7 +221,7 @@ a {
 .reviewBox .Ment {
   margin-top: 20px;
   color: #333;
-  font-size: calc(1.275rem + .3vw);
+  font-size: calc(1.275rem + 0.3vw);
 }
 .reviewBox .Star {
   margin-bottom: 20px;
@@ -298,9 +297,12 @@ input::placeholder {
 .footContainer {
   display: flex;
 }
-.foot p {margin-bottom: 0 !important;}
-.foot address {margin: 0;}
-
+.foot p {
+  margin-bottom: 0 !important;
+}
+.foot address {
+  margin: 0;
+}
 
 /**********
   Loading
@@ -343,16 +345,15 @@ input::placeholder {
   }
 }
 
-
-
 /**********
   Media Query
 **********/
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .Leftright {
     flex-direction: column;
   }
-  .movieImg, .movieImg img {
+  .movieImg,
+  .movieImg img {
     width: 100%;
     margin-right: 0;
   }
@@ -362,18 +363,23 @@ input::placeholder {
   .comment-all {
     padding: 10px 20px;
   }
-  .cast-all{
+  .cast-all {
     grid-template-columns: repeat(4, 1fr);
   }
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
   .commentList {
     grid-template-columns: 1fr;
   }
-  .cast-all{
+  .cast-all {
     grid-template-columns: repeat(2, 1fr);
   }
   #movieVideo iframe {
     width: 100% !important;
   }
+}
+
+.movieTitle {
+  font-weight: 900;
+  font-size: 35px;
 }
