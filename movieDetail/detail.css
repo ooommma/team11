@@ -2,6 +2,12 @@
 body,
 section {
   width: auto;
+  padding: 10px 10px 0px 10px;
+  margin: 10px 10px 0px 10px;
+}
+
+* {
+  font-family: "PT Serif", serif;
 }
 
 li,
@@ -12,77 +18,109 @@ a {
 
 /* 헤드라인 */
 .Header {
-  width: 100%;
+  width: auto;
+  display: inline-block;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  display: inline-block;
-  background-color: aqua;
+  padding: 10px;
+  margin: 10px;
+  /* background-color: aqua; */
 }
 
 .headerLeft {
   display: inline-block;
+  display: flex;
+  margin: 0 0 0 15px;
 }
 
 .HeaderRight {
   display: inline-block;
   text-align: right;
+  display: flex;
+  margin: 0 15px 0 0;
 }
 
 .headerContainer {
   display: inline-block;
   padding: 3px 3px 0 3px;
   margin: 3px 3px 0 3px;
-  background-color: rgb(98, 98, 231);
+  /* background-color: rgb(187, 187, 246); */
 }
 
 .headerItem {
   display: inline-block;
   padding: 2px;
   margin: 0;
-  background-color: rgb(97, 97, 202);
+  /* background-color: rgb(187, 187, 243);*/
 }
 
 .headerItemlist {
   display: inline-block;
   padding: 3px;
   margin: 3px;
-  background-color: rgb(99, 99, 207);
+  /* background-color: rgba(248, 218, 187, 0.626); */
+}
+
+/* 무비 Wrapper */
+#movieWrapper {
+  padding: 1px 5px 0 5px;
+  margin: 0px 5px 0 5px;
+}
+
+.mainCenter {
+  /* background-color: rgb(239, 239, 126); */
+  padding: 5px 5px 30px 5px;
+  margin: 10px 5px 30px 5px;
+  border-bottom: 1px solid black;
+}
+
+.movieImg {
+  margin: 0 50px 0 0;
+  display: inline-block;
+}
+
+.movieGenres {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+}
+
+.movieRT {
+  display: inline-block;
 }
 
 /* 메인 파트 : 영화 내용 소개 및 예고편 */
-.mainCenter {
-  background-color: rgb(239, 239, 126);
-  background-image: none;
-}
-
 .Leftright {
   display: inline-block;
-  width: auto;
-  padding: 25px;
-  margin: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: auto;
+  padding: 5px 0 1px 0;
+  margin: 5px 0 1px 0;
 }
 
 .leftPoster {
   display: inline-block;
+  justify-content: center;
   text-align: center;
-  padding: 5px 5px 0 5px;
-  margin: 0 30px 0 30px;
-  background-color: aquamarine;
+  padding: 5px 25px 10px 25px;
+  margin: 10px 1px 0px 0px;
+  /* background-color: aquamarine; */
 }
 
 .rightContent {
   display: inline-block;
-  padding: 5px 5px 0 5px;
-  margin: 0 30px 0 30px;
-  background-color: darksalmon;
+  width: 80%;
+  text-align: center;
+  padding: 5px 25px 10px 25px;
+  margin: 10px 0px 0px 2px;
+  /* background-color: darksalmon; */
 }
 
 /* 메인 파트2 : 출연자 카드 */
 .Cast {
-  background-color: rgb(255, 196, 36);
+  /* background-color: rgb(255, 196, 36); */
+  display: flex;
+  border-bottom: 1px solid black;
 }
 
 .img-size {
@@ -93,7 +131,7 @@ a {
 
 .cast-items {
   display: inline-block;
-  background-color: rgb(43, 226, 52);
+  /* background-color: rgb(43, 226, 52); */
   border-radius: 5px;
   width: 20%;
   padding: 10px 5px 5px 5px;
@@ -109,6 +147,11 @@ a {
 }
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
+#allComment {
+  padding: 7px;
+  margin: 7px;
+}
+
 .Register {
   width: 400px;
   justify-content: center;
@@ -120,30 +163,32 @@ a {
 }
 
 /* 메인 파트2 : 코멘트 카드 */
-.comment-list {
-  background-color: rgb(188, 112, 213);
-}
-
 .comment-all {
   display: inline-block;
-  background-color: rgb(157, 155, 155);
+  /* background-color: rgb(157, 155, 155); */
   border-radius: 5px;
   width: 20%;
   padding: 10px 5px 5px 5px;
   margin: 2.5px;
 }
 
+.comment-list {
+  border-bottom: 1px solid black;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
 /* 맨 아래 */
 .foot {
-  background-color: cornflowerblue;
-  margin-top: 20px;
-  margin-bottom: 0;
+  background-color: rgb(201, 200, 200);
+  padding-top: 5px;
+  margin-top: 25px;
 }
 
 .footContainer {
   display: flex;
-  padding: 1px;
-  margin-top: 7%;
 }
 
 .footItem {
@@ -160,28 +205,34 @@ a {
 }
 
 .loading-flash div {
-  border-radius:50%;
-  height:10px; 
-  width:10px;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
   display: inline-block;
   box-sizing: border-box;
   background: #0ea6fd;
 }
 .loading-flash div:nth-of-type(4) {
-  animation:flash 0.4s 0.1s ease-in-out infinite;
+  animation: flash 0.4s 0.1s ease-in-out infinite;
 }
 .loading-flash div:nth-of-type(3) {
-  animation:flash 0.4s linear infinite;
+  animation: flash 0.4s linear infinite;
 }
 .loading-flash div:nth-of-type(2) {
-  animation:flash 0.4s -0.1s linear infinite;
+  animation: flash 0.4s -0.1s linear infinite;
 }
 .loading-flash div:nth-of-type(1) {
-  animation:flash 0.4s -0.2s linear infinite;
+  animation: flash 0.4s -0.2s linear infinite;
 }
 
 @keyframes flash {
-  0% { opacity: 0; }
-  50% { opacity: 0.5 }
-  100% { opacity: 1.0 }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
