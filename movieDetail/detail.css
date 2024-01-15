@@ -100,11 +100,22 @@ a {
   /* background-color: aquamarine; */
 }
 
+.movieImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;;
+}
+
 .averageRate p {
   margin: 0 !important;
 }
 
 /* 메인 파트2 : 출연자 카드 */
+#creditWrapper {
+  margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid #000;
+}
+
 .cast {
   /* background-color: rgb(255, 196, 36); */
   display: flex;
@@ -112,22 +123,17 @@ a {
 }
 
 .img-size {
-  justify-content: center;
+  justify-content: start;
   width: 100px;
   margin-bottom: 5px;
 }
 
 .cast-items {
-  display: inline-block;
-  /* background-color: rgb(43, 226, 52); */
-  border-radius: 5px;
-  width: 20%;
-  padding: 10px 5px 5px 5px;
-  margin: 2.5px;
-}
-
-.cast-itemImg {
-  display: inline-block;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .cast-itemInfo {
@@ -135,8 +141,8 @@ a {
 }
 
 .cast-all{
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
@@ -156,17 +162,20 @@ a {
 }
 
 /* 메인 파트2 : 코멘트 카드 */
-.comment-all {
-  display: inline-block;
-  /* background-color: rgb(157, 155, 155); */
-  border-radius: 5px;
-  width: 20%;
-  padding: 10px 5px 5px 5px;
-  margin: 2.5px;
+.commentList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.comment-list {
-  border-bottom: 1px solid black;
+.comment-all {
+  border-radius: 5px;
+  width: 22%;
+  margin-top: 20px;
+}
+
+.comment-item {
+  text-align: justify;
 }
 
 input::placeholder {
@@ -240,5 +249,13 @@ input::placeholder {
   }
   .movieImg, .movieImg img {
     width: 100%;
+  }
+  .comment-all,.cast-items {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 768px){
+  .comment-all {
+    width: 95%;
   }
 }
