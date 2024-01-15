@@ -61,22 +61,11 @@ a {
   /* background-color: rgba(248, 218, 187, 0.626); */
 }
 
-/* 무비 Wrapper */
-#movieWrapper {
-  padding: 1px 5px 0 5px;
-  margin: 0px 5px 0 5px;
-}
-
 .mainCenter {
   /* background-color: rgb(239, 239, 126); */
   padding: 5px 5px 30px 5px;
   margin: 10px 5px 30px 5px;
   border-bottom: 1px solid black;
-}
-
-.movieImg {
-  margin: 0 50px 0 0;
-  display: inline-block;
 }
 
 .movieGenres {
@@ -90,34 +79,33 @@ a {
 
 /* 메인 파트 : 영화 내용 소개 및 예고편 */
 .Leftright {
-  display: inline-block;
   display: flex;
-  justify-content: space-around;
-  width: auto;
+  justify-content: space-between;
   padding: 5px 0 1px 0;
   margin: 5px 0 1px 0;
 }
 
+#movieLeft {
+  flex:1;
+}
+#movieRight {
+  flex:2;
+}
+
 .leftPoster {
-  display: inline-block;
+  display: flex;
   justify-content: center;
-  text-align: center;
-  padding: 5px 25px 10px 25px;
-  margin: 10px 1px 0px 0px;
+  align-items: center;
+  flex-direction: column;
   /* background-color: aquamarine; */
 }
 
-.rightContent {
-  display: inline-block;
-  width: 80%;
-  text-align: center;
-  padding: 5px 25px 10px 25px;
-  margin: 10px 0px 0px 2px;
-  /* background-color: darksalmon; */
+.averageRate p {
+  margin: 0 !important;
 }
 
 /* 메인 파트2 : 출연자 카드 */
-.Cast {
+.cast {
   /* background-color: rgb(255, 196, 36); */
   display: flex;
   border-bottom: 1px solid black;
@@ -144,6 +132,11 @@ a {
 
 .cast-itemInfo {
   display: inline-block;
+}
+
+.cast-all{
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 /* 메인 파트2 : 아이디,비밀번호 코멘트 등록 */
@@ -198,7 +191,6 @@ input::placeholder {
 /**********
   Loading
 **********/
-
 .loading {
   text-align: center;
   margin: 20px auto;
@@ -234,5 +226,19 @@ input::placeholder {
   }
   100% {
     opacity: 1;
+  }
+}
+
+
+
+/**********
+  Media Query
+**********/
+@media screen and (max-width: 1024px){
+  .Leftright {
+    flex-direction: column;
+  }
+  .movieImg, .movieImg img {
+    width: 100%;
   }
 }

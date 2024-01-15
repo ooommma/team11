@@ -2,7 +2,8 @@
 const movieWrapper = document.getElementById("movieWrapper");
 const castWrapper = document.getElementById("castWrapper");
 const loadingBox = document.getElementsByClassName("loading");
-/* id값 받아오기 */
+
+/* main페이지에서 id값 받아오기 */
 function getQueryParam(param) {
   let searchParams = new URLSearchParams(window.location.search);
   return searchParams.get(param);
@@ -14,7 +15,7 @@ function hideLoadingIndicator() {
     loadingBox[i].style.display = "none";
   }
   movieWrapper.style.display = "block";
-  castWrapper.style.display = "block";
+  castWrapper.style.display = "flex";
 }
 
 const TMDB_API_KEY =
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         movieGenres.push(element.name);
       });
 
-      // 최소 1.4초 동안 로딩 표시 후 숨김 처리
+      // 최소 1초 동안 로딩 표시 후 숨김 처리
       setTimeout(hideLoadingIndicator, 1000);
 
       //트레일러 비디오 찾기
@@ -85,26 +86,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="Leftright">
         <div id="movieLeft" class="leftPoster">
-          <div class='leftBox'>
+          <div class="movieImg">
             <h2 class="movieTitle">${data[0].title}</h2>
-            <div class="movieImg">
-              <img src='https://image.tmdb.org/t/p/w500/${data[0].poster_path}' alt="" style="width: 300px" />
-            </div>
-            <p>영화 평점 : ${data[0].vote_average}</p>
+            <img src='https://image.tmdb.org/t/p/w500/${data[0].poster_path}' alt="" style="width: 300px" />
           </div>
+          <p>영화 평점 : ${data[0].vote_average}</p>
         </div>
         <!--//movieLeft-->
 
         <div id="movieRight" class="rightContent">  
           <div class='rightBox'>
-            <div>
-              <p>영화 별점 주기</p>
-              <p>평균 별점</p>
-            </div> 
-            <div>
-              <p>찜하기</p>
-              <p>코멘트</p>
-            </div>
+            <p id="averageRate" class="averageRate"></p>
             <p>${data[0].overview}</p>
             <div id="movieVideo">
               <p>영화 예고편</p>
@@ -152,6 +144,8 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
         castWrapper.insertAdjacentHTML("beforeend", creditsInfo);
       });
+
+      displayAverageRating();
     })
     .catch((err) => {
       console.error("API 호출 중 오류 발생:", err);
@@ -161,3 +155,37 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(hideLoadingIndicator, 1000);
     });
 });
+
+
+/* 
+  평점 계산 
+  1) calculateAverageRating() 함수로 평점 배열을 받아 평균을 계산
+  2) displayAverageRating() 함수로 로컬 스토리지에서 평점 데이터를 불러와 평균을 계산한 후 이를 HTML 요소에 표시 
+*/
+function calculateAverageRating(ratings) {
+  const sum = ratings.reduce((acc, curr) => acc + curr, 0);
+  return (ratings.length > 0) ? (sum / ratings.length).toFixed(2) : 0;
+}
+
+function displayAverageRating() {
+  // 로컬 스토리지에서 평점 데이터 불러오기
+  let ratings = [];
+  for(let key in localStorage) {
+    if (!localStorage.hasOwnProperty(key)) {
+      continue; // setItem, getItem 등의 키를 건너뜀
+    }
+    //console.log(`${key}: ${localStorage.getItem(key)}`);
+
+    var stars = JSON.parse(localStorage.getItem(key)).stars;
+    var count = stars.split('★').length - 1;
+    ratings.push(count);
+  }
+  // 평균 계산
+  const average = calculateAverageRating(ratings);
+
+  // HTML에 평균 표시
+  document.getElementById('averageRate').innerHTML = `
+  <p>평균 별점</p>
+  ${average}
+  `;
+}
