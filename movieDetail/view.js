@@ -21,7 +21,7 @@ function hideLoadingIndicator() {
     loadingBox[i].style.display = "none";
   }
   movieWrapper.style.display = "block";
-  castWrapper.style.display = "flex";
+  castWrapper.style.display = "grid";
 }
 
 const TMDB_API_KEY =
