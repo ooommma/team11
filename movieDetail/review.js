@@ -15,18 +15,26 @@ function creatingReview() {
   let review = document.getElementById("userRV").value;
 
   //유효성 검사(id > password > stars > review 순으로 진행됨)
-  //location.reload()는 별점 체크란 초기화 용
+  //내부 if문은 별점 체크란 초기화 용
   if (validationCheckID(id) === false) {
-    location.reload();
+    if (selectedStars) {
+      selectedStars.checked = false;
+    }
     return;
   } else if (validationCheckPW(password) === false) {
-    location.reload();
+    if (selectedStars) {
+      selectedStars.checked = false;
+    }
     return;
   } else if (validationCheckStars(stars) === false) {
-    location.reload();
+    if (selectedStars) {
+      selectedStars.checked = false;
+    }
     return;
   } else if (validationCheckRV(review) === false) {
-    location.reload();
+    if (selectedStars) {
+      selectedStars.checked = false;
+    }
     return;
   }
 
@@ -47,9 +55,6 @@ function creatingReview() {
   //4. myMap 자료구조에 저장된 값을 로컬 스토리지로 이동하여 저장
   localStorage.setItem(id, MergedId);
 
-  document.querySelector("#userID").value = "";
-  document.getElementById("userPW").value = "";
-  document.getElementById("userRV").value = "";
   location.reload();
 }
 
