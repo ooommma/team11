@@ -4,8 +4,13 @@ body {
   font-family: "Noto Serif KR", serif;
   display: grid;
   justify-items: center;
-  row-gap: 50px;
+  row-gap: 30px;
   padding: 10px;
+}
+
+button {
+  font-family: "Noto Serif KR", serif;
+  cursor: pointer;
 }
 
 .webTitle {
@@ -23,6 +28,13 @@ body {
     height: 40px;
     text-align: center;
   }
+}
+
+.sortBox > button {
+  background: transparent;
+  margin: 0 5px 0 5px;
+  border: 0px;
+  color: rgb(100, 100, 100);
 }
 
 .cardBox {
@@ -72,7 +84,6 @@ body {
     .detailBtn {
       width: 100px;
       height: 30px;
-      font-family: "Noto Serif KR", serif;
       font-style: italic;
       background: transparent;
       border: 1px solid black;
@@ -103,6 +114,7 @@ body {
 
   .pages {
     margin: auto 3px auto 3px;
+    cursor: pointer;
   }
 
   .preBtn,
@@ -110,11 +122,11 @@ body {
     font-size: 17px;
     color: black;
     margin: auto 10px auto 10px;
+    cursor: pointer;
   }
 }
 
 .topBtn {
-  font-family: "PT Serif";
   position: fixed;
   bottom: 20px;
   right: 20px;

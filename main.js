@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   makeMovieCard(movies);
   sendIDToDetailPage(movies);
   makePageBtns(sort, page);
+  sorting(sort);
 
   document.getElementById("searchMovie").addEventListener("keyup", () => {
     searchMovie(movies);
@@ -133,5 +134,19 @@ function makePageBtns(curSort, curPage) {
 
   document.getElementById("nextBtn").addEventListener("click", () => {
     window.location.href = `index.html?sort=${curSort}&page=${goto}`;
+  });
+}
+
+// 솔팅 함수
+function sorting(curSort) {
+  let sortArr = ["top_rated", "now_playing", "popular", "upcoming"];
+  document.getElementById(curSort).style.color = "black";
+  document.getElementById(curSort).style.fontWeight = 700;
+
+  sortArr.forEach((sort) => {
+    document.getElementById(sort).addEventListener("click", () => {
+      console.log(sort);
+      window.location.href = `index.html?sort=${sort}&page=1`;
+    });
   });
 }
