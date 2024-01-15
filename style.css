@@ -24,6 +24,7 @@ button {
   margin-top: 20px;
 
   > input {
+    font-family: "Noto Serif KR", serif;
     width: 200px;
     height: 40px;
     text-align: center;
