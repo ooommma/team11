@@ -77,9 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class='movieImg'>
                 <img src='https://image.tmdb.org/t/p/w500/${data[0].backdrop_path}'>
             </div>
-            <div class='movieGenres'>
-                ${movieGenres}
-            </div>
+            <p class='movieGenres'>${movieGenres}</p>
             <p class='movieRT'>${data[0].runtime}분</p>
         </div>
       </div>
@@ -99,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <p id="averageRate" class="averageRate"></p>
             <p>${data[0].overview}</p>
             <div id="movieVideo">
-              <p>영화 예고편</p>
+              <p class="tit">영화 예고편</p>
               ${movieTrailer} 
             </div>
           </div>
@@ -185,7 +183,7 @@ function displayAverageRating() {
 
   // HTML에 평균 표시
   document.getElementById('averageRate').innerHTML = `
-  <p>평균 별점</p>
+  <p class="tit">평균 별점</p>
   ${average}
   `;
 }

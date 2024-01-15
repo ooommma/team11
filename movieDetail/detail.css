@@ -16,6 +16,9 @@ a {
   text-decoration: none;
 }
 
+.tit {
+  font-weight: bold;
+}
 /* 헤드라인 */
 .Header {
   width: auto;
@@ -68,9 +71,16 @@ a {
   border-bottom: 1px solid black;
 }
 
-.movieGenres {
-  display: inline-block;
-  margin: 0 10px 0 10px;
+.mainBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.movieGenres, .movieRT {
+  margin-right: 5px;
+  margin-top: 20px;
 }
 
 .movieRT {
@@ -165,13 +175,13 @@ a {
 .commentList {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .comment-all {
-  border-radius: 5px;
-  width: 22%;
+  width: 21%;
   margin-top: 20px;
+  margin-right: 4%;
 }
 
 .comment-item {
