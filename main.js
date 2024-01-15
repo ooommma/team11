@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   makeMovieCard(movies);
   sendIDToDetailPage(movies);
   makePageBtns(sort, page);
+  sorting(sort);
 
   document.getElementById("searchMovie").addEventListener("keyup", () => {
     searchMovie(movies);
@@ -49,17 +50,19 @@ function makeMovieCard(movies) {
   movies.forEach((movie) => {
     let title = movie["title"];
     let overview = movie["overview"];
+    if (overview.length > 100) overview = overview.substr(0, 100) + "...";
     let poster_path = movie["poster_path"];
     let vote_average = movie["vote_average"];
     let id = movie["id"];
 
     let card_html = `
-            <div class="movie-card" id="${id}" data-id="${id}">
+            <div class="movie-card" id="${id}">
                 <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="poster image">
                 <div class="card-body">
                     <div class="card-title"><a href="https://www.themoviedb.org/movie/${id}" target="blank">${title}</a></div>
                     <p class="overview">${overview}</p>
-                    <p class="vote-average">${vote_average}</p>
+                    <button class="detailBtn" data-id="${id}">자세히 보기</button>
+                    <p class="vote-average">★${vote_average}</p>
                 </div>
             </div>
             `;
@@ -86,7 +89,7 @@ function searchMovie(movies) {
 
 // 상세 페이지로 ID값 전송 함수
 function sendIDToDetailPage() {
-  const movieList = document.querySelectorAll(".movie-card");
+  const movieList = document.querySelectorAll(".detailBtn");
   movieList.forEach((movie) => {
     movie.addEventListener("click", () => {
       const movieId = movie.getAttribute("data-id");
@@ -131,5 +134,19 @@ function makePageBtns(curSort, curPage) {
 
   document.getElementById("nextBtn").addEventListener("click", () => {
     window.location.href = `index.html?sort=${curSort}&page=${goto}`;
+  });
+}
+
+// 솔팅 함수
+function sorting(curSort) {
+  let sortArr = ["top_rated", "now_playing", "popular", "upcoming"];
+  document.getElementById(curSort).style.color = "black";
+  document.getElementById(curSort).style.fontWeight = 700;
+
+  sortArr.forEach((sort) => {
+    document.getElementById(sort).addEventListener("click", () => {
+      console.log(sort);
+      window.location.href = `index.html?sort=${sort}&page=1`;
+    });
   });
 }
