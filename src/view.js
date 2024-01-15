@@ -339,9 +339,16 @@ document.querySelector("#ToWriteButton").addEventListener("click", creatingRevie
 document.querySelector("#ToDeleteButton").addEventListener("click", () => {
   const id = document.querySelector("#userID").value;
   const password = document.getElementById("userPW").value;
+  if (!JSON.parse(localStorage.getItem(id))) {
+    alert("해당 유저가 존재하지 않습니다.");
+    return;
+  }
   if (JSON.parse(localStorage.getItem(id)).name === id && JSON.parse(localStorage.getItem(id)).password === password) {
     myMap.delete(id);
     localStorage.removeItem(id);
+    alert("삭제가 완료되었습니다.");
+  } else {
+    alert("비밀번호가 맞지 않습니다.");
   }
   location.reload();
 });
