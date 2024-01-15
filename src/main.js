@@ -63,7 +63,7 @@ function makeMovieCard(movies) {
     let id = movie["id"];
 
     if (overview.length > 100) overview = overview.substr(0, 100) + "...";
-    if (!overview) overview = "데이터가 아직 수집되지 않았습니다.";
+    if (!overview) overview = "아직 데이터가 수집되지 않았습니다.";
     let card_html = `
             <div class="movie-card" id="${id}">
                 <img src="https://image.tmdb.org/t/p/w300${poster_path}" id="${id}-img" class="poster" alt="이미지가 없습니다.">

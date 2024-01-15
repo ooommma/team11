@@ -53,8 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiDetail = "https://api.themoviedb.org/3/movie/" + movieId + "?language=ko-KO";
   const apiVideos = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?language=ko-KO"; // 두 번째 API 주소
   const apiCredits = "https://api.themoviedb.org/3/movie/" + movieId + "/credits?language=ko-KO"; // 세 번째... 출연진
+  const engDetail = "https://api.themoviedb.org/3/movie/" + movieId + "?language=en-US";
 
-  Promise.all([fetch(apiDetail, options), fetch(apiVideos, options), fetch(apiCredits, options)])
+  Promise.all([
+    fetch(apiDetail, options),
+    fetch(apiVideos, options),
+    fetch(apiCredits, options),
+    fetch(engDetail, options)
+  ])
     .then((responses) => {
       // 모든 응답을 JSON으로 변환
       return Promise.all(responses.map((response) => response.json()));
@@ -76,6 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
         movieTrailerIdx !== -1
           ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${movieVideos[movieTrailerIdx].key}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowfullscreen></iframe>`
           : `<p class="no-trailer">트레일러가 없습니다.</p>`;
+
+      // 한국어 개요가 없는 경우 영어 개요 제공
+      let overview = !data[0].overview ? data[3].overview : data[0].overview;
+      if (!overview) overview = "아직 데이터가 수집되지 않았습니다.";
 
       let movieContents = `
       <div id="movieMain" class="mainCenter">
@@ -102,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class='rightBox'>
             <p id="averageRate" class="averageRate"></p>
             <p class="tit">개요</p>
-            <p>${data[0].overview}</p>
+            <p>${overview}</p>
             <div id="movieVideo">
               <p class="tit">영화 예고편</p>
               ${movieTrailer} 
