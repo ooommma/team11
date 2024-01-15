@@ -51,8 +51,9 @@ body {
     .card-title {
       margin-top: 10px;
       font-weight: 900;
-      font-size: 28px;
+      font-size: 30px;
       text-align: center;
+      padding: 5px;
 
       > a {
         text-decoration-line: none;
@@ -64,15 +65,30 @@ body {
       position: relative;
       top: 5px;
       line-height: 120%;
-      font-size: 13px;
+      font-size: 14px;
       padding: 10px;
+    }
+
+    .detailBtn {
+      width: 100px;
+      height: 30px;
+      font-family: "Noto Serif KR", serif;
+      font-style: italic;
+      background: transparent;
+      border: 1px solid black;
+      margin: 20px auto 20px auto;
+      display: block;
+      transition: all 0.3s ease;
+    }
+    .detailBtn:hover {
+      box-shadow: -7px -7px 20px 0px #fff9, -4px -4px 5px 0px #fff9, 7px 7px 20px 0px #0002, 4px 4px 5px 0px #0001;
     }
 
     .vote-average {
       position: absolute;
       text-align: end;
-      bottom: 0;
-      right: 0;
+      bottom: 10px;
+      right: 10px;
 
       font-style: italic;
     }
@@ -98,6 +114,7 @@ body {
 }
 
 .topBtn {
+  font-family: "PT Serif";
   position: fixed;
   bottom: 20px;
   right: 20px;
