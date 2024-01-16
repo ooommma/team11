@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let director = data[2].crew.find((element) => element.job === "Director");
       credits.push(director);
 
-      for (var value of data[2].cast) {
+      for (let value of data[2].cast) {
         credits.push(value);
       }
 
@@ -188,15 +188,15 @@ function displayAverageRating() {
     if (!localStorage.hasOwnProperty(key)) {
       continue; // setItem, getItem 등의 키를 건너뜀
     }
-    //console.log(`${key}: ${localStorage.getItem(key)}`);
-
-    var stars = JSON.parse(localStorage.getItem(key)).stars;
-    var count = stars.split("★").length - 1;
-    ratings.push(count);
+    let stars = JSON.parse(localStorage.getItem(key)).stars;
+    let movie = JSON.parse(localStorage.getItem(key)).movie;
+    let count = stars.split("★").length - 1;
+    if(movieId === movie){
+      ratings.push(count);
+    }
   }
   // 평균 계산
   const average = calculateAverageRating(ratings);
-
   // HTML에 평균 표시
   document.getElementById("averageRate").innerHTML = `
   <p class="tit">평균 별점</p>
