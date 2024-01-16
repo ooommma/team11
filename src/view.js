@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let director = data[2].crew.find((element) => element.job === "Director");
       credits.push(director);
 
-      for (var value of data[2].cast) {
+      for (let value of data[2].cast) {
         credits.push(value);
       }
 
@@ -188,15 +188,15 @@ function displayAverageRating() {
     if (!localStorage.hasOwnProperty(key)) {
       continue; // setItem, getItem 등의 키를 건너뜀
     }
-    //console.log(`${key}: ${localStorage.getItem(key)}`);
-
-    var stars = JSON.parse(localStorage.getItem(key)).stars;
-    var count = stars.split("★").length - 1;
-    ratings.push(count);
+    let stars = JSON.parse(localStorage.getItem(key)).stars;
+    let movie = JSON.parse(localStorage.getItem(key)).movie;
+    let count = stars.split("★").length - 1;
+    if(movieId === movie){
+      ratings.push(count);
+    }
   }
   // 평균 계산
   const average = calculateAverageRating(ratings);
-
   // HTML에 평균 표시
   document.getElementById("averageRate").innerHTML = `
   <p class="tit">평균 별점</p>
@@ -317,7 +317,7 @@ function gettingReview() {
                      <div class="comment-item">ID ${gettingValue.name ? gettingValue.name : "N/A"}</div>
                    <div class="comment-Info">
                      <div class="comment-item">별점 ${gettingValue.stars ? gettingValue.stars : "N/A"}</div>
-                     <div class="comment-item" style="white-space: pre-line; overflow-wrap: break-word;">코멘트 ${
+                     <div class="comment-item" style="white-space: pre-line; overflow-wrap: break-word;">${
                        gettingValue.review ? gettingValue.review.replace(/\n/g, "<br>") : "N/A"
                      }</div>
                    </div>

@@ -207,7 +207,7 @@ li {
 .reviewBox .userBox textarea:focus ~ label {
   top: -20px;
   left: 0;
-  color: #0ea6fd;
+  color: #666;
   font-size: 12px;
 }
 
@@ -240,7 +240,7 @@ li {
 
 .reviewBox button {
   border: none;
-  background: #0ea6fd;
+  background: #666;
   outline: 0;
   width: 100%;
   margin-top: 5px;
@@ -250,7 +250,7 @@ li {
   transition: ease-in-out 0.2s all;
 }
 .reviewBox button:hover {
-  background: #82cbf6;
+  background: #444;
 }
 #allComment {
   padding: 7px;
@@ -318,7 +318,7 @@ input::placeholder {
   width: 10px;
   display: inline-block;
   box-sizing: border-box;
-  background: #0ea6fd;
+  background: #666;
 }
 .loading-flash div:nth-of-type(4) {
   animation: flash 0.4s 0.1s ease-in-out infinite;
