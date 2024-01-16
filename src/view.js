@@ -317,7 +317,7 @@ function gettingReview() {
                      <div class="comment-item">ID ${gettingValue.name ? gettingValue.name : "N/A"}</div>
                    <div class="comment-Info">
                      <div class="comment-item">별점 ${gettingValue.stars ? gettingValue.stars : "N/A"}</div>
-                     <div class="comment-item" style="white-space: pre-line; overflow-wrap: break-word;">코멘트 ${
+                     <div class="comment-item" style="white-space: pre-line; overflow-wrap: break-word;">${
                        gettingValue.review ? gettingValue.review.replace(/\n/g, "<br>") : "N/A"
                      }</div>
                    </div>
