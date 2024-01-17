@@ -30,11 +30,11 @@
 
 ## 프로젝트 소개
 
-Atcha  
-튜터님 피드백용 배포 처리 -> https://ooommma.github.io/team11/  
+**Atcha**  
+:point_right: <a href="https://www.youtube.com/watch?v=H8Vn2q9Gxws">시연 영상</a> :point_left:  
 TMDB API 기반의 영화 정보, 검색과 리뷰 기능을 제공하는 웹 사이트
 
-개발 기간 : 2023.01.10 ~ 2023.01.16 프로젝트 기간 끝
+개발 기간 : 2024.01.10 ~ 2024.01.16 프로젝트 기간 끝
 
 ## 구현 기능
 
