@@ -21,9 +21,7 @@ async function getMovieData(sort, page) {
 
   let movies = [];
   // TMDB API request Code
-  const TMDB_API_KEY =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4N2Y4NWM2NjNlZjQ2N2JkOTRiODIzNGExZTk0NjgwZiIsInN1YiI6IjY1OGUzYjk4NGMxYmIwMDg1MzMyYWNkNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hVqOyx3rkW6bjMu8bg82orc6YZpg-oJj6vlnLNqfcu4";
-
+  const TMDB_API_KEY = "";
   const options = {
     method: "GET",
     headers: {
